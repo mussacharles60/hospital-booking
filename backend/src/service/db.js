@@ -41,6 +41,7 @@ class DB {
     return new Promise((resolve, reject) => {
       const q = conn.query(options, values, (error, result, fields) => {
         if (error) {
+          console.error('[DB]: query: error:', error);
           reject(error);
           return;
         }
