@@ -31,6 +31,24 @@ const Validation = {
       return 'error';
     }
   },
+  getDoctorIfExist: async (conn, doctor_id) => {
+    try {
+      let r = await DB.getInstance().query(
+        conn,
+        `SELECT * FROM doctors WHERE id=?`,
+        [doctor_id]
+      );
+      if (!r) {
+        return 'error';
+      }
+      if (r.length === 0) {
+        return 'not-found';
+      }
+      return r[0];
+    } catch (error) {
+      return 'error';
+    }
+  },
 };
 
 module.exports = Validation;

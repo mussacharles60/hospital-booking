@@ -6,6 +6,7 @@ const ServerError = require('./');
 const ResponseCodes = require('../apis');
 const Validation = require('./validation');
 const ServerUtil = require('../utils');
+const TokenHelper = require('./token');
 
 // {
 //   'action': 'admin_login', 'doctor_login', 'patient_login'
@@ -106,7 +107,7 @@ const AuthHelperInternal = {
 
     // return success response
     const resp = {
-      error: {
+      success: {
         code: ResponseCodes.Success.OK,
         message: 'admin logged in',
         data: {
@@ -182,26 +183,25 @@ const AuthHelperInternal = {
       return ServerError.sendInternalServerError(res);
     }
     if (!hash) {
-      DB.getInstance().releaseConnection(conn);
-      return ServerError.sendInternalServerError(res);
-    }
+      // generate new patient id
+      const new_id = await ServerUtil.generate.id(conn, 'patient');
+      // get current server date
+      const date = moment().utc().valueOf();
 
-    // generate new patient id
-    const new_id = await ServerUtil.generate.id(conn, 'patient');
-    // get current server date
-    const date = moment(date).utc().valueOf();
-
-    try {
-      const r = await DB.getInstance().query(
-        conn,
-        `INSERT INTO patients (id, name, email, phone, password_hash, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)`,
-        [new_id, name, email, phone, password_hash, date, 0]
-      );
-      if (!r) {
+      try {
+        const r = await DB.getInstance().query(
+          conn,
+          `INSERT INTO patients (id, name, email, phone, password_hash, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+          [new_id, name, email, phone, password_hash, date, 0]
+        );
+        if (!r) {
+          DB.getInstance().releaseConnection(conn);
+          return ServerError.sendInternalServerError(res);
+        }
+      } catch (error) {
         DB.getInstance().releaseConnection(conn);
         return ServerError.sendInternalServerError(res);
       }
-    } catch (error) {
       DB.getInstance().releaseConnection(conn);
       return ServerError.sendInternalServerError(res);
     }
@@ -211,7 +211,7 @@ const AuthHelperInternal = {
 
     // return success response
     const resp = {
-      error: {
+      success: {
         code: ResponseCodes.Success.OK,
         message: 'patient account created',
         data: {
@@ -299,7 +299,7 @@ const AuthHelperInternal = {
 
     // return success response
     const resp = {
-      error: {
+      success: {
         code: ResponseCodes.Success.OK,
         message: 'patient logged in',
         data: {
@@ -318,7 +318,93 @@ const AuthHelperInternal = {
     // send response to client
     return res.status(ResponseCodes.Success.OK).send(JSON.stringify(resp));
   },
-  doctorRequestSignup: async (req, res) => {},
+  doctorRequestSignup: async (req, res) => {
+    const name = req.body.name;
+    const email = req.body.email;
+    const phone = req.body.phone;
+    // const certificate
+    // const national_id
+    if (!name || typeof name !== 'string' || name.length === 0) {
+      return ServerError.sendForbidden(res, 'name is required');
+    }
+    if (!email || typeof email !== 'string' || email.length === 0) {
+      return ServerError.sendForbidden(res, 'email is required');
+    }
+    if (!phone || typeof phone !== 'string' || phone.length === 0) {
+      return ServerError.sendForbidden(res, 'phone number is required');
+    }
+
+    // get connection of the database
+    let conn;
+    try {
+      conn = await DB.getInstance().getConnection();
+    } catch (error) {
+      console.error(
+        '[AuthHelper]: AuthHelperInternal: doctorRequestSignup: getConnection: catch:',
+        error
+      );
+      return ServerError.sendInternalServerError(res);
+    }
+
+    // check if doctor is already exist in the database
+    const is_doctor_exist = await Validation.isDoctorExist(conn, email);
+    if (is_doctor_exist === 'error') {
+      DB.getInstance().releaseConnection(conn);
+      return ServerError.sendInternalServerError(res);
+    }
+    if (is_doctor_exist === true) {
+      DB.getInstance().releaseConnection(conn);
+      return ServerError.sendConflict(res, 'account is already exist');
+    }
+
+    // generate new id
+    const new_id = await ServerUtil.generate.id(conn, 'doctor');
+    // get current server date
+    const date = moment().utc().valueOf();
+
+    // generate doctor_request_signup token
+    const payload = {
+      user_id: new_id,
+    };
+    const token = TokenHelper.generateDoctorSignupRequestToken(payload);
+
+    try {
+      const r = await DB.getInstance().query(
+        conn,
+        `INSERT INTO doctors (id, name, email, password_hash, signup_request_token, created_at, updated_at) VALUE (?, ?, ?, ?, ?, ?, ?)`,
+        [new_id, name, email, null, token, date, 0]
+      );
+      if (!r) {
+        DB.getInstance().releaseConnection(conn);
+        return ServerError.sendInternalServerError(res);
+      }
+    } catch (error) {
+      DB.getInstance().releaseConnection(conn);
+      return ServerError.sendInternalServerError(res);
+    }
+
+    // TODO: send doctor_signup_request email to the provided email
+    // const url = `https://topdoctz.net/auth?action=doctor-signup-request&token=${token}`;
+    console.log(
+      '[AuthHelper]: AuthHelperInternal: doctorRequestSignup: token: ',
+      token
+    );
+    // ...
+
+    // close connection
+    DB.getInstance().releaseConnection(conn);
+
+    // return success response
+    const resp = {
+      success: {
+        code: ResponseCodes.Success.OK,
+        message: 'doctor signup request is in preview',
+      },
+    };
+
+    // send response to client
+    return res.status(ResponseCodes.Success.OK).send(JSON.stringify(resp));
+  },
   doctorSignup: async (req, res) => {
     const token = req.body.token;
     const password = req.body.password;
@@ -328,6 +414,26 @@ const AuthHelperInternal = {
     }
     if (!password || typeof password !== 'string' || password.length === 0) {
       return ServerError.sendForbidden(res, 'password is required');
+    }
+
+    // get payload from token
+    let payload = undefined;
+    try {
+      payload = await TokenHelper.verifyDoctorSignupRequestToken(token);
+    } catch (error) {
+      return ServerError.sendUnauthorized(res, 'invalid token');
+    }
+
+    if (!payload || typeof payload !== 'object') {
+      return ServerError.sendUnauthorized(res, 'invalid token');
+    }
+
+    if (
+      !payload.user_id ||
+      typeof payload.user_id !== 'string' ||
+      payload.user_id.length === 0
+    ) {
+      return ServerError.sendUnauthorized(res, 'invalid token');
     }
 
     // get connection of the database
@@ -341,5 +447,87 @@ const AuthHelperInternal = {
       );
       return ServerError.sendInternalServerError(res);
     }
+
+    const doctor = await Validation.getDoctorIfExist(conn, payload.user_id);
+    if (doctor === 'error') {
+      DB.getInstance().releaseConnection(conn);
+      return ServerError.sendInternalServerError(res);
+    }
+    if (doctor === 'not-found') {
+      DB.getInstance().releaseConnection(conn);
+      return ServerError.sendNotFound(res, 'account not exist');
+    }
+
+    // generate password hash using bcrypt
+    let hash;
+    try {
+      const saltRounds = 10;
+      const salt = await bcrypt.genSalt(saltRounds);
+      hash = await bcrypt.hash(password, salt);
+    } catch (error) {
+      Console.error(
+        '[AuthHelper]: AuthHelperInternal: doctorSignup: bcrypt.hash: error',
+        error
+      );
+      DB.getInstance().releaseConnection(conn);
+      return ServerError.sendInternalServerError(res);
+    }
+    if (!hash) {
+      DB.getInstance().releaseConnection(conn);
+      return ServerError.sendInternalServerError(res);
+    }
+
+    // generate access token for the authentication
+    const new_payload = {
+      user_id: doctor.id,
+    };
+    const access_token = await TokenHelper.generateAccessToken(new_payload);
+
+    // get current server date
+    const date = moment().utc().valueOf();
+
+    // update doctor table
+    try {
+      const r = await DB.getInstance().query(
+        conn,
+        `UPDATE doctors SET password_hash=?, created_at=? WHERE id=?`,
+        [hash, date, doctor.id]
+      );
+      if (!r) {
+        DB.getInstance().releaseConnection(conn);
+        return ServerError.sendInternalServerError(res);
+      }
+    } catch (error) {
+      DB.getInstance().releaseConnection(conn);
+      return ServerError.sendInternalServerError(res);
+    }
+
+    // update doctor object
+    doctor.created_at = date;
+
+    // close connection
+    DB.getInstance().releaseConnection(conn);
+
+    // return success response
+    const resp = {
+      success: {
+        code: ResponseCodes.Success.OK,
+        message: 'doctor account created',
+        data: {
+          access_token,
+          token_type: 'Bearer',
+          doctor: {
+            id: new_id,
+            name: doctor.name,
+            email: doctor.email,
+            created_at: date,
+            updated_at: doctor.updated_at,
+          },
+        },
+      },
+    };
+
+    // send response to client
+    return res.status(ResponseCodes.Success.OK).send(JSON.stringify(resp));
   },
 };
