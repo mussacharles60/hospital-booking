@@ -1,5 +1,6 @@
 const express = require('express');
 const AuthUserHelper = require('../helpers/authUser');
+const ServerError = require('../helpers');
 
 const userRouter = express.Router();
 
@@ -11,12 +12,7 @@ userRouter
     // set response status code
     res.status(200);
     // send response
-    res.send(
-      JSON.stringify({
-        status: 'ERROR',
-        message: 'Use POST method',
-      })
-    );
+    ServerError.sendForbidden(res, 'Use POST method');
   })
   .post((req, res) => {
     res.contentType('application/json');

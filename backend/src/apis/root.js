@@ -1,4 +1,5 @@
 const express = require('express');
+const ResponseCodes = require('.');
 
 const rootRouter = express.Router();
 
@@ -10,7 +11,10 @@ rootRouter.route('/').get((req, res) => {
   // send response
   res.send(
     JSON.stringify({
-      status: 'OK',
+      success: {
+        code: ResponseCodes.Success.OK,
+        message: 'OK',
+      },
     })
   );
 });

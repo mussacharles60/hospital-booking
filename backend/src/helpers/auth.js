@@ -518,8 +518,8 @@ const AuthHelperInternal = {
     try {
       const r = await DB.getInstance().query(
         conn,
-        `INSERT INTO doctors (id, name, email, password_hash, signup_request_token, created_at, updated_at) VALUE (?, ?, ?, ?, ?, ?, ?)`,
-        [new_id, name, email, null, token, date, 0]
+        `INSERT INTO doctors (id, name, email, password_hash, signup_request_token, registration_status, created_at, updated_at) VALUE (?, ?, ?, ?, ?, ?, ?, ?)`,
+        [new_id, name, email, null, token, 'waiting', date, 0]
       );
       if (!r) {
         DB.getInstance().releaseConnection(conn);

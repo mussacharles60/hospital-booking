@@ -30,7 +30,7 @@ app.all('*', (req, res, next) => {
 // for cross origin requests
 app.use(cors('*'));
 
-app.use('/', rootRouter);
+app.use('/api', rootRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
 app.use('/api/admin', adminRouter);

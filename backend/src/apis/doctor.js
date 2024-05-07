@@ -1,4 +1,5 @@
 const express = require('express');
+const ServerError = require('../helpers');
 
 const doctorRouter = express.Router();
 
@@ -8,11 +9,7 @@ doctorRouter.route('/').get((req, res) => {
   // set response status code
   res.status(200);
   // send response
-  res.send(
-    JSON.stringify({
-      status: 'OK',
-    })
-  );
+  ServerError.sendForbidden(res, 'Use POST method');
 });
 
 module.exports = doctorRouter;
