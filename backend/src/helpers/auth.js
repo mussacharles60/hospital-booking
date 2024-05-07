@@ -59,6 +59,8 @@ const AuthHelper = (req, res) => {
     // logout
     case 'logout':
       return AuthHelperInternal.logout(req, res);
+    default:
+      return ServerError.sendNotFound('unknown action');
   }
 };
 
