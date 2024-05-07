@@ -9,6 +9,7 @@ const doctorRouter = require('./apis/doctor');
 const appointmentRouter = require('./apis/appointment');
 const adminRouter = require('./apis/admin');
 const authRouter = require('./apis/auth');
+const userRouter = require('./apis/user');
 
 const app = express();
 const port = process.env.SERVER_PORT;
@@ -31,6 +32,7 @@ app.use(cors('*'));
 
 app.use('/', rootRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/user', userRouter);
 app.use('/api/admin', adminRouter);
 app.use('/api/doctor', doctorRouter);
 app.use('/api/patient', patientRouter);
