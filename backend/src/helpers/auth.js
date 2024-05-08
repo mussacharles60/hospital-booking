@@ -509,17 +509,11 @@ const AuthHelperInternal = {
     // get current server date
     const date = moment().utc().valueOf();
 
-    // generate doctor_request_signup token
-    const payload = {
-      user_id: new_id,
-    };
-    const token = TokenHelper.generateDoctorSignupRequestToken(payload);
-
     try {
       const r = await DB.getInstance().query(
         conn,
-        `INSERT INTO doctors (id, name, email, password_hash, signup_request_token, registration_status, created_at, updated_at) VALUE (?, ?, ?, ?, ?, ?, ?, ?)`,
-        [new_id, name, email, null, token, 'waiting', date, 0]
+        `INSERT INTO doctors (id, name, email, phone, password_hash, registration_status, created_at, updated_at) VALUE (?, ?, ?, ?, ?, ?, ?, ?)`,
+        [new_id, name, email, phone, null, 'waiting', date, 0]
       );
       if (!r) {
         DB.getInstance().releaseConnection(conn);
@@ -640,8 +634,8 @@ const AuthHelperInternal = {
     try {
       const r = await DB.getInstance().query(
         conn,
-        `UPDATE doctors SET password_hash=?, created_at=? WHERE id=?`,
-        [hash, date, doctor.id]
+        `UPDATE doctors SET registration_status=?, password_hash=?, created_at=? WHERE id=?`,
+        ['completed', hash, date, doctor.id]
       );
       if (!r) {
         DB.getInstance().releaseConnection(conn);
