@@ -39,10 +39,11 @@ appointment:
     description
     department_id
     doctor_id
-    patient_at
+    patient_id
     created_at
     updated_at
     appointed_at
+    status
 
 patient:
    id
@@ -52,3 +53,8 @@ patient:
    password_hash
    created_at
    updated_at
+
+department_doctors
+   department_id
+   doctor_id
+   created_at

@@ -37,6 +37,17 @@ class DB {
     });
   };
 
+  getConnectionAsync = async () => {
+    let conn;
+    try {
+      conn = await DB.getInstance().getConnection();
+    } catch (error) {
+      console.error('[DB]: getConnectionAsync: catch:', error);
+      return null;
+    }
+    return conn;
+  };
+
   query = (conn, options, values) => {
     return new Promise((resolve, reject) => {
       const q = conn.query(options, values, (error, result, fields) => {
