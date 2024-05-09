@@ -50,7 +50,7 @@ const PatientHelperInternal = {
       typeof department_id !== 'string' ||
       department_id.length === 0
     ) {
-      return ServerError.sendForbidden(res, 'department name is required');
+      return ServerError.sendForbidden(res, 'department id is required');
     }
 
     if (typeof appointed_at !== 'number' || appointed_at <= 0) {
