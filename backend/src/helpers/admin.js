@@ -1,4 +1,5 @@
 const ServerError = require('.');
+const ResponseCodes = require('../apis');
 const DB = require('../service/db');
 const ServerUtil = require('../utils');
 const TokenHelper = require('./token');
@@ -39,7 +40,7 @@ const AdminHelper = async (req, res) => {
     case 'remove_department':
       return AdminHelperInternal.department.removeDepartment(req, res, admin);
     default:
-      return ServerError.sendNotFound('unknown action');
+      return ServerError.sendNotFound(res, 'unknown action');
   }
 };
 
@@ -852,6 +853,160 @@ const AdminHelperInternal = {
 
       // send response to client
       return res.status(ResponseCodes.Success.OK).send(JSON.stringify(resp));
+    },
+    getDepartmentDoctors: async (req, res, admin) => {
+      const department_id = req.body.department_id;
+      if (
+        !department_id ||
+        typeof department_id !== 'string' ||
+        department_id.length === 0
+      ) {
+        return ServerError.sendForbidden(res, 'department id is required');
+      }
+
+      // get connection of the database
+      let conn;
+      try {
+        conn = await DB.getInstance().getConnection();
+      } catch (error) {
+        console.error(
+          '[AdminHelper]: AdminHelperInternal: department.getDepartmentDoctors: getConnection: catch:',
+          error
+        );
+        return ServerError.sendInternalServerError(res);
+      }
+
+      const department = await Validation.getDepartmentIfExist(
+        conn,
+        department_id
+      );
+      if (department === 'error') {
+        DB.getInstance().releaseConnection();
+        return ServerError.sendInternalServerError(res);
+      }
+      if (!department === 'not-found') {
+        DB.getInstance().releaseConnection();
+        return ServerError.sendNotFound(res, 'department not found');
+      }
+
+      // get departments
+      let r;
+      try {
+        r = await DB.getInstance().query(
+          conn,
+          [
+            `SELECT DD.doctor_id, D.name, DD.created_at `,
+            `FROM department_doctors DD `,
+            `INNER JOIN doctors D `,
+            `ON DD.doctor_id = D.id `,
+            `WHERE DD.department_id=?`,
+          ].join(''),
+          [department.id]
+        );
+      } catch (error) {
+        DB.getInstance().releaseConnection(conn);
+        return ServerError.sendInternalServerError(res);
+      }
+      if (!r) {
+        DB.getInstance().releaseConnection(conn);
+        return ServerError.sendInternalServerError(res);
+      }
+
+      // close connection
+      DB.getInstance().releaseConnection(conn);
+
+      const department_doctors = [];
+      r.forEach((obj) => {
+        department_doctors.push({
+          id: obj.doctor_id,
+          name: obj.name,
+          created_at: obj.created_at,
+          department: {
+            id: department.id,
+            name: department.name,
+          },
+        });
+      });
+
+      // return success response
+      const resp = {
+        success: {
+          code: ResponseCodes.Success.OK,
+          message: 'list of doctors in department',
+          data: {
+            department_doctors,
+          },
+        },
+      };
+
+      // send response to client
+      return res.status(ResponseCodes.Success.OK).send(JSON.stringify(resp));
+    },
+    removeDepartment: async (req, res, admin) => {
+      const department_id = req.body.department_id;
+
+      if (
+        !department_id ||
+        typeof department_id !== 'string' ||
+        department_id.length === 0
+      ) {
+        return ServerError.sendForbidden(res, 'department id is required');
+      }
+
+      // get connection of the database
+      let conn;
+      try {
+        conn = await DB.getInstance().getConnection();
+      } catch (error) {
+        console.error(
+          '[AdminHelper]: AdminHelperInternal: department.removeDepartment: getConnection: catch:',
+          error
+        );
+        return ServerError.sendInternalServerError(res);
+      }
+
+      // check if department exist
+      const department = await Validation.getDepartmentIfExist(
+        conn,
+        department_id
+      );
+      if (department === 'error') {
+        DB.getInstance().releaseConnection(conn);
+        return ServerError.sendInternalServerError(res);
+      }
+      if (department === 'not-found') {
+        DB.getInstance().releaseConnection(conn);
+        return ServerError.sendNotFound(res, 'department not exist');
+      }
+
+      try {
+        let r = await DB.getInstance().query(
+          conn,
+          `DELETE FROM departments WHERE id=?`,
+          [department.id]
+        );
+        if (!r) {
+          DB.getInstance().releaseConnection(conn);
+          return ServerError.sendInternalServerError(res);
+        }
+      } catch (error) {
+        DB.getInstance().releaseConnection(conn);
+        return ServerError.sendInternalServerError(res);
+      }
+
+      // close connection
+      DB.getInstance().releaseConnection(conn);
+
+      // return success response
+      const resp = {
+        success: {
+          code: ResponseCodes.Success.OK,
+          message: 'department deleted',
+        },
+      };
+
+      // send response to client
+      return res.status(ResponseCodes.Success.OK).se;
     },
   },
   appointment: {},

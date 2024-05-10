@@ -51,6 +51,7 @@ patient:
    email
    phone
    password_hash
+   password_recover_token
    created_at
    updated_at
 

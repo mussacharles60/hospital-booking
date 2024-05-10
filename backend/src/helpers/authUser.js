@@ -1,7 +1,6 @@
 const ServerError = require('./');
 const DB = require('../service/db');
 const TokenHelper = require('./token');
-const Validation = require('./validation');
 
 const AuthUserHelper = async (req, res) => {
   const action = req.body.action;
@@ -45,7 +44,7 @@ const AuthUserHelper = async (req, res) => {
       return AuthUserHelperInternal.patient.changeProfilePhoto(req, res, user);
     }
     default:
-      return ServerError.sendNotFound('unknown action');
+      return ServerError.sendNotFound(res, 'unknown action');
   }
 };
 

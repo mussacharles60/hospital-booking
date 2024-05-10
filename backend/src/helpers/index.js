@@ -15,7 +15,7 @@ const ServerError = {
     return res.status(ResponseCodes.ClientError.UNAUTHORIZED).send(
       JSON.stringify({
         error: {
-          code: ResponseCodes.ServerError.UNAUTHORIZED,
+          code: ResponseCodes.ClientError.UNAUTHORIZED,
           message,
         },
       })
@@ -25,7 +25,7 @@ const ServerError = {
     return res.status(ResponseCodes.ClientError.CONFLICT).send(
       JSON.stringify({
         error: {
-          code: ResponseCodes.ServerError.CONFLICT,
+          code: ResponseCodes.ClientError.CONFLICT,
           message,
         },
       })
@@ -35,7 +35,7 @@ const ServerError = {
     return res.status(ResponseCodes.ClientError.FORBIDDEN).send(
       JSON.stringify({
         error: {
-          code: ResponseCodes.ServerError.FORBIDDEN,
+          code: ResponseCodes.ClientError.FORBIDDEN,
           message,
         },
       })
@@ -45,7 +45,7 @@ const ServerError = {
     return res.status(ResponseCodes.ClientError.NOT_FOUND).send(
       JSON.stringify({
         error: {
-          code: ResponseCodes.ServerError.NOT_FOUND,
+          code: ResponseCodes.ClientError.NOT_FOUND,
           message,
         },
       })

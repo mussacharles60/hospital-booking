@@ -24,7 +24,7 @@ const PatientHelper = async (req, res) => {
     case 'appointments_data':
       return PatientHelperInternal.getAppointmentsData(req, res, patient);
     default:
-      return ServerError.sendNotFound('unknown action');
+      return ServerError.sendNotFound(res, 'unknown action');
   }
 };
 

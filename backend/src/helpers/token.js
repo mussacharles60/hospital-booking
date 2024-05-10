@@ -181,11 +181,12 @@ const TokenHelper = {
         header: {
           alg: 'HS256',
         },
-        expiresIn: 5 * 60, // 5 minutes token period
+        expiresIn: 1000 * 60 * 5, // 5 minutes token period
       }
     );
   },
   verifyPasswordRecoverToken: (token) => {
+    console.log('[TokenHelper]: verifyPasswordRecoverToken: token: ', token);
     // get payload from generated token
     return new Promise((resolve, reject) => {
       if (token) {
@@ -194,6 +195,10 @@ const TokenHelper = {
           process.env.AUTH_PASSWORD_RECOVER_TOKEN_KEY,
           (err, decoded) => {
             if (err) {
+              console.error(
+                '[TokenHelper]: verifyPasswordRecoverToken: error: ',
+                err
+              );
               reject(err);
             } else {
               resolve(decoded);

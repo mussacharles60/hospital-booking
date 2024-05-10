@@ -60,7 +60,7 @@ const AuthHelper = (req, res) => {
     case 'logout':
       return AuthHelperInternal.logout(req, res);
     default:
-      return ServerError.sendNotFound('unknown action');
+      return ServerError.sendNotFound(res, 'unknown action');
   }
 };
 
@@ -94,7 +94,7 @@ const AuthHelperInternal = {
     // get admin from database with similar email
     let result;
     try {
-      result = DB.getInstance().query(
+      result = await DB.getInstance().query(
         conn,
         `SELECT * FROM admins WHERE email=?`,
         [email]
@@ -107,6 +107,11 @@ const AuthHelperInternal = {
       DB.getInstance().releaseConnection(conn); // close connection before exiting the program
       return ServerError.sendInternalServerError(res);
     }
+
+    console.log(
+      '[AuthHelper]: AuthHelperInternal: adminLogin: query: result: ',
+      result
+    );
 
     if (!result || result.length === 0) {
       DB.getInstance().releaseConnection(conn);
@@ -121,7 +126,7 @@ const AuthHelperInternal = {
     try {
       matched = await bcrypt.compare(password, admin.password_hash);
     } catch (error) {
-      Console.error(
+      console.error(
         '[AuthHelper]: AuthHelperInternal: adminLogin: bcrypt.compare: error',
         error
       );
@@ -199,7 +204,7 @@ const AuthHelperInternal = {
     // get admin from database with similar email
     let result;
     try {
-      result = DB.getInstance().query(
+      result = await DB.getInstance().query(
         conn,
         `SELECT * FROM admins WHERE email=?`,
         [email]
@@ -224,7 +229,7 @@ const AuthHelperInternal = {
     const new_payload = {
       user_id: obj.id,
     };
-    const password_recover_token = await TokenHelper.generateAccessToken(
+    const password_recover_token = await TokenHelper.generatePasswordRecoverToken(
       new_payload
     );
 
@@ -335,7 +340,7 @@ const AuthHelperInternal = {
       const salt = await bcrypt.genSalt(saltRounds);
       hash = await bcrypt.hash(password, salt);
     } catch (error) {
-      Console.error(
+      console.error(
         '[AuthHelper]: AuthHelperInternal: adminPasswordRecover: bcrypt.hash: error',
         error
       );
@@ -403,7 +408,7 @@ const AuthHelperInternal = {
     try {
       matched = await bcrypt.compare(old_password, user.password_hash);
     } catch (error) {
-      Console.error(
+      console.error(
         '[AuthHelper]: AuthHelperInternal: adminPasswordChange: bcrypt.compare: error',
         error
       );
@@ -422,7 +427,7 @@ const AuthHelperInternal = {
       const salt = await bcrypt.genSalt(saltRounds);
       hash = await bcrypt.hash(password, salt);
     } catch (error) {
-      Console.error(
+      console.error(
         '[AuthHelper]: AuthHelperInternal: adminPasswordChange: bcrypt.hash: error',
         error
       );
@@ -606,7 +611,7 @@ const AuthHelperInternal = {
       const salt = await bcrypt.genSalt(saltRounds);
       hash = await bcrypt.hash(password, salt);
     } catch (error) {
-      Console.error(
+      console.error(
         '[AuthHelper]: AuthHelperInternal: doctorSignup: bcrypt.hash: error',
         error
       );
@@ -709,7 +714,7 @@ const AuthHelperInternal = {
     // get admin from database with similar email
     let result;
     try {
-      result = DB.getInstance().query(
+      result = await DB.getInstance().query(
         conn,
         `SELECT * FROM doctors WHERE email=?`,
         [email]
@@ -736,7 +741,7 @@ const AuthHelperInternal = {
     try {
       matched = await bcrypt.compare(password, doctor.password_hash);
     } catch (error) {
-      Console.error(
+      console.error(
         '[AuthHelper]: AuthHelperInternal: doctorLogin: bcrypt.compare: error',
         error
       );
@@ -814,7 +819,7 @@ const AuthHelperInternal = {
     // get doctor from database with similar email
     let result;
     try {
-      result = DB.getInstance().query(
+      result = await DB.getInstance().query(
         conn,
         `SELECT * FROM doctors WHERE email=?`,
         [email]
@@ -950,7 +955,7 @@ const AuthHelperInternal = {
       const salt = await bcrypt.genSalt(saltRounds);
       hash = await bcrypt.hash(password, salt);
     } catch (error) {
-      Console.error(
+      console.error(
         '[AuthHelper]: AuthHelperInternal: doctorPasswordRecover: bcrypt.hash: error',
         error
       );
@@ -1018,7 +1023,7 @@ const AuthHelperInternal = {
     try {
       matched = await bcrypt.compare(old_password, user.password_hash);
     } catch (error) {
-      Console.error(
+      console.error(
         '[AuthHelper]: AuthHelperInternal: doctorPasswordChange: bcrypt.compare: error',
         error
       );
@@ -1037,7 +1042,7 @@ const AuthHelperInternal = {
       const salt = await bcrypt.genSalt(saltRounds);
       hash = await bcrypt.hash(password, salt);
     } catch (error) {
-      Console.error(
+      console.error(
         '[AuthHelper]: AuthHelperInternal: doctorPasswordChange: bcrypt.hash: error',
         error
       );
@@ -1129,7 +1134,7 @@ const AuthHelperInternal = {
       const salt = await bcrypt.genSalt(saltRounds);
       hash = await bcrypt.hash(password, salt);
     } catch (error) {
-      Console.error(
+      console.error(
         '[AuthHelper]: AuthHelperInternal: patientSignup: bcrypt.hash: error',
         error
       );
@@ -1209,7 +1214,7 @@ const AuthHelperInternal = {
     // get patient from database with similar email
     let result;
     try {
-      result = DB.getInstance().query(
+      result = await DB.getInstance().query(
         conn,
         `SELECT * FROM patients WHERE email=?`,
         [email]
@@ -1236,7 +1241,7 @@ const AuthHelperInternal = {
     try {
       matched = await bcrypt.compare(password, patient.password_hash);
     } catch (error) {
-      Console.error(
+      console.error(
         '[AuthHelper]: AuthHelperInternal: patientLogin: bcrypt.compare: error',
         error
       );
@@ -1314,7 +1319,7 @@ const AuthHelperInternal = {
     // get patient from database with similar email
     let result;
     try {
-      result = DB.getInstance().query(
+      result = await DB.getInstance().query(
         conn,
         `SELECT * FROM patients WHERE email=?`,
         [email]
@@ -1450,7 +1455,7 @@ const AuthHelperInternal = {
       const salt = await bcrypt.genSalt(saltRounds);
       hash = await bcrypt.hash(password, salt);
     } catch (error) {
-      Console.error(
+      console.error(
         '[AuthHelper]: AuthHelperInternal: patientPasswordRecover: bcrypt.hash: error',
         error
       );
@@ -1518,7 +1523,7 @@ const AuthHelperInternal = {
     try {
       matched = await bcrypt.compare(old_password, user.password_hash);
     } catch (error) {
-      Console.error(
+      console.error(
         '[AuthHelper]: AuthHelperInternal: patientPasswordChange: bcrypt.compare: error',
         error
       );
@@ -1537,7 +1542,7 @@ const AuthHelperInternal = {
       const salt = await bcrypt.genSalt(saltRounds);
       hash = await bcrypt.hash(password, salt);
     } catch (error) {
-      Console.error(
+      console.error(
         '[AuthHelper]: AuthHelperInternal: patientPasswordChange: bcrypt.hash: error',
         error
       );

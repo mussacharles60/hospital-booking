@@ -27,7 +27,7 @@ const DoctorHelper = async (req, res) => {
     case 'complete_appointment':
       return DoctorHelperInternal.setCompleteAppointment(req, res, doctor);
     default:
-      return ServerError.sendNotFound('unknown action');
+      return ServerError.sendNotFound(res, 'unknown action');
   }
 };
 
