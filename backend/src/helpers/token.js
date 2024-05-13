@@ -9,6 +9,7 @@ const TokenHelper = {
     try {
       payload = await TokenHelper.verifyAccessToken(req);
     } catch (error) {
+      console.error('[TokenHelper]: getUser: catch: ', error);
       ServerError.sendUnauthorized(res, 'unauthorized', 'invalid_token');
       return null;
     }
@@ -127,7 +128,7 @@ const TokenHelper = {
         const bearerToken = bearer[1];
         // req.token = bearerToken;
 
-        verify(
+        jsonwebtoken.verify(
           bearerToken,
           process.env.AUTH_ACCESS_TOKEN_KEY,
           (err, decoded) => {

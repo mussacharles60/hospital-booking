@@ -143,7 +143,7 @@ const AuthHelperInternal = {
 
     // generate access token for the authentication
     const new_payload = {
-      user_id: doctor.id,
+      user_id: admin.id,
     };
     const access_token = await TokenHelper.generateAccessToken(new_payload);
 
@@ -151,7 +151,7 @@ const AuthHelperInternal = {
     const refresh_token = await TokenHelper.generateRefreshToken(new_payload);
 
     // return refresh token through response cookie
-    res.cookie(`auth-token=${refresh_token}`, value, {
+    res.cookie('auth-token', refresh_token, {
       domain: 'localhost:5000',
       httpOnly: true,
       sameSite: true,
@@ -225,7 +225,7 @@ const AuthHelperInternal = {
 
     const obj = result[0];
 
-    // generate access token for the authentication
+    // generate password recover token for the authentication
     const new_payload = {
       user_id: obj.id,
     };
@@ -529,14 +529,6 @@ const AuthHelperInternal = {
       return ServerError.sendInternalServerError(res);
     }
 
-    // TODO: send doctor_signup_request email to the provided email
-    // const url = `https://topdoctz.net/auth?action=doctor-signup-request&token=${token}`;
-    console.log(
-      '[AuthHelper]: AuthHelperInternal: doctorRequestSignup: token: ',
-      token
-    );
-    // ...
-
     // close connection
     DB.getInstance().releaseConnection(conn);
 
@@ -658,7 +650,7 @@ const AuthHelperInternal = {
     DB.getInstance().releaseConnection(conn);
 
     // return refresh token through response cookie
-    res.cookie(`auth-token=${refresh_token}`, value, {
+    res.cookie('auth-token', refresh_token, {
       domain: 'localhost:5000',
       httpOnly: true,
       sameSite: true,
@@ -675,7 +667,7 @@ const AuthHelperInternal = {
           access_token,
           token_type: 'Bearer',
           doctor: {
-            id: new_id,
+            id: doctor.id,
             name: doctor.name,
             email: doctor.email,
             created_at: date,
@@ -735,6 +727,11 @@ const AuthHelperInternal = {
 
     const doctor = result[0];
 
+    if (doctor.registration_status !== 'completed') {
+      DB.getInstance().releaseConnection(conn);
+      return ServerError.sendUnauthorized(res, 'your registration was not completed');
+    }
+
     let matched = false;
 
     // use bcrypt to verify user password this the stored hash
@@ -766,7 +763,7 @@ const AuthHelperInternal = {
     const refresh_token = await TokenHelper.generateRefreshToken(new_payload);
 
     // return refresh token through response cookie
-    res.cookie(`auth-token=${refresh_token}`, value, {
+    res.cookie('auth-token', refresh_token, {
       domain: 'localhost:5000',
       httpOnly: true,
       sameSite: true,
@@ -840,11 +837,11 @@ const AuthHelperInternal = {
 
     const obj = result[0];
 
-    // generate access token for the authentication
+    // generate password recover token for the authentication
     const new_payload = {
       user_id: obj.id,
     };
-    const password_recover_token = await TokenHelper.generateAccessToken(
+    const password_recover_token = await TokenHelper.generatePasswordRecoverToken(
       new_payload
     );
 
@@ -1266,7 +1263,7 @@ const AuthHelperInternal = {
     const refresh_token = await TokenHelper.generateRefreshToken(new_payload);
 
     // return refresh token through response cookie
-    res.cookie(`auth-token=${refresh_token}`, value, {
+    res.cookie('auth-token', refresh_token, {
       domain: 'localhost:5000',
       httpOnly: true,
       sameSite: true,
@@ -1340,11 +1337,11 @@ const AuthHelperInternal = {
 
     const obj = result[0];
 
-    // generate access token for the authentication
+    // generate password recover token for the authentication
     const new_payload = {
       user_id: obj.id,
     };
-    const password_recover_token = await TokenHelper.generateAccessToken(
+    const password_recover_token = await TokenHelper.generatePasswordRecoverToken(
       new_payload
     );
 

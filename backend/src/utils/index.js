@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const DB = require('../service/db');
 
 const ServerUtil = {
   __generateId: (length) => {
@@ -72,35 +73,35 @@ const checkId = async (conn, id, type) => {
     try {
       switch (type) {
         case 'admin':
-          result = await DatabaseHelper.getInstance().query(
+          result = await DB.getInstance().query(
             conn,
             `SELECT COUNT(*) AS count FROM admins WHERE id=?`,
             [id]
           );
           break;
         case 'patient':
-          result = await DatabaseHelper.getInstance().query(
+          result = await DB.getInstance().query(
             conn,
             `SELECT COUNT(*) AS count FROM patients WHERE id=?`,
             [id]
           );
           break;
         case 'doctor':
-          result = await DatabaseHelper.getInstance().query(
+          result = await DB.getInstance().query(
             conn,
             `SELECT COUNT(*) AS count FROM doctors WHERE id=?`,
             [id]
           );
           break;
         case 'department':
-          result = await DatabaseHelper.getInstance().query(
+          result = await DB.getInstance().query(
             conn,
             `SELECT COUNT(*) AS count FROM departments WHERE id=?`,
             [id]
           );
           break;
         case 'appointment':
-          result = await DatabaseHelper.getInstance().query(
+          result = await DB.getInstance().query(
             conn,
             `SELECT COUNT(*) AS count FROM appointments WHERE id=?`,
             [id]

@@ -186,6 +186,8 @@ const AdminHelperInternal = {
       const date = moment().utc().valueOf();
 
       // send doctor request signup email
+      // TODO: send doctor_signup_request email to the provided email
+      // const url = `https://topdoctz.net/auth?action=doctor-signup-request&token=${token}`;
       // ...
       let mail_sent = true;
 
