@@ -229,9 +229,8 @@ const AuthHelperInternal = {
     const new_payload = {
       user_id: obj.id,
     };
-    const password_recover_token = await TokenHelper.generatePasswordRecoverToken(
-      new_payload
-    );
+    const password_recover_token =
+      await TokenHelper.generatePasswordRecoverToken(new_payload);
 
     // add this token to the database
     try {
@@ -729,7 +728,10 @@ const AuthHelperInternal = {
 
     if (doctor.registration_status !== 'completed') {
       DB.getInstance().releaseConnection(conn);
-      return ServerError.sendUnauthorized(res, 'your registration was not completed');
+      return ServerError.sendUnauthorized(
+        res,
+        'your registration was not completed'
+      );
     }
 
     let matched = false;
@@ -841,9 +843,8 @@ const AuthHelperInternal = {
     const new_payload = {
       user_id: obj.id,
     };
-    const password_recover_token = await TokenHelper.generatePasswordRecoverToken(
-      new_payload
-    );
+    const password_recover_token =
+      await TokenHelper.generatePasswordRecoverToken(new_payload);
 
     // add this token to the database
     try {
@@ -1014,6 +1015,12 @@ const AuthHelperInternal = {
       return ServerError.sendForbidden(res, 'new password is required');
     }
 
+    // get connection of the database
+    let conn = await DB.getInstance().getConnectionAsync();
+    if (!conn) {
+      return ServerError.sendInternalServerError(res);
+    }
+
     let matched = false;
 
     // use bcrypt to verify user old password this the stored hash
@@ -1046,6 +1053,10 @@ const AuthHelperInternal = {
       DB.getInstance().releaseConnection(conn);
       return ServerError.sendInternalServerError(res);
     }
+    console.log(
+      '[AuthHelper]: AuthHelperInternal: doctorPasswordChange: bcrypt.hash: ',
+      hash
+    );
     if (!hash) {
       DB.getInstance().releaseConnection(conn);
       return ServerError.sendInternalServerError(res);
@@ -1056,7 +1067,7 @@ const AuthHelperInternal = {
       const r = await DB.getInstance().query(
         conn,
         `UPDATE doctors SET password_hash=?, password_recover_token=? WHERE id=?`,
-        [hash, null, obj.id]
+        [hash, null, user.id]
       );
       if (!r) {
         DB.getInstance().releaseConnection(conn);
@@ -1139,25 +1150,26 @@ const AuthHelperInternal = {
       return ServerError.sendInternalServerError(res);
     }
     if (!hash) {
-      // generate new patient id
-      const new_id = await ServerUtil.generate.id(conn, 'patient');
-      // get current server date
-      const date = moment().utc().valueOf();
+      DB.getInstance().releaseConnection(conn);
+      return ServerError.sendInternalServerError(res);
+    }
 
-      try {
-        const r = await DB.getInstance().query(
-          conn,
-          `INSERT INTO patients (id, name, email, phone, password_hash, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)`,
-          [new_id, name, email, phone, password_hash, date, 0]
-        );
-        if (!r) {
-          DB.getInstance().releaseConnection(conn);
-          return ServerError.sendInternalServerError(res);
-        }
-      } catch (error) {
+    // generate new patient id
+    const new_id = await ServerUtil.generate.id(conn, 'patient');
+    // get current server date
+    const date = moment().utc().valueOf();
+
+    try {
+      const r = await DB.getInstance().query(
+        conn,
+        `INSERT INTO patients (id, name, email, phone, password_hash, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        [new_id, name, email, phone, hash, date, 0]
+      );
+      if (!r) {
         DB.getInstance().releaseConnection(conn);
         return ServerError.sendInternalServerError(res);
       }
+    } catch (error) {
       DB.getInstance().releaseConnection(conn);
       return ServerError.sendInternalServerError(res);
     }
@@ -1255,7 +1267,7 @@ const AuthHelperInternal = {
 
     // generate access token for the authentication
     const new_payload = {
-      user_id: doctor.id,
+      user_id: patient.id,
     };
     const access_token = await TokenHelper.generateAccessToken(new_payload);
 
@@ -1341,9 +1353,8 @@ const AuthHelperInternal = {
     const new_payload = {
       user_id: obj.id,
     };
-    const password_recover_token = await TokenHelper.generatePasswordRecoverToken(
-      new_payload
-    );
+    const password_recover_token =
+      await TokenHelper.generatePasswordRecoverToken(new_payload);
 
     // add this token to the database
     try {
@@ -1514,6 +1525,12 @@ const AuthHelperInternal = {
       return ServerError.sendForbidden(res, 'new password is required');
     }
 
+    // get connection of the database
+    let conn = await DB.getInstance().getConnectionAsync();
+    if (!conn) {
+      return ServerError.sendInternalServerError(res);
+    }
+
     let matched = false;
 
     // use bcrypt to verify user old password this the stored hash
@@ -1556,7 +1573,7 @@ const AuthHelperInternal = {
       const r = await DB.getInstance().query(
         conn,
         `UPDATE patients SET password_hash=?, password_recover_token=? WHERE id=?`,
-        [hash, null, obj.id]
+        [hash, null, user.id]
       );
       if (!r) {
         DB.getInstance().releaseConnection(conn);

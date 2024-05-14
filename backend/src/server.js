@@ -10,6 +10,7 @@ const appointmentRouter = require('./apis/appointment');
 const adminRouter = require('./apis/admin');
 const authRouter = require('./apis/auth');
 const userRouter = require('./apis/user');
+const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
 const port = process.env.SERVER_PORT;
@@ -47,6 +48,9 @@ app.get('*', (req, res) => {
   // send response
   res.send('{"status":"NOT FOUND"}');
 });
+
+// error handler
+app.use(errorHandler);
 
 // start webserver on port
 app.listen(port, () => {

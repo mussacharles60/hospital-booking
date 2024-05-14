@@ -32,6 +32,7 @@ class DB {
           reject(error);
           return;
         }
+        console.log('[DB]: getConnection: threadId: ', connection.threadId);
         resolve(connection);
       });
     });
@@ -52,19 +53,26 @@ class DB {
     return new Promise((resolve, reject) => {
       const q = conn.query(options, values, (error, result, fields) => {
         if (error) {
-          console.error('[DB]: query: error:', error);
+          console.error('[DB]: query: error: ', error);
           reject(error);
           return;
         }
+        console.log(
+          '[DB]: query: ',
+          q.sql,
+          ' result: ',
+          result
+        );
         resolve(result);
       });
-      console.log('[DB]: query: executing query:', q.sql);
+      console.log('[DB]: query: executing query: ', q.sql);
     });
   };
 
-  releaseConnection = (pool) => {
-    if (pool) {
-      pool.release();
+  releaseConnection = (connection) => {
+    if (connection) {
+      console.log('[DB]: releaseConnection: threadId: ', connection.threadId);
+      connection.release();
     }
   };
 }

@@ -1,3 +1,4 @@
+const DB = require('../service/db');
 const Constants = require('../utils/constants');
 
 const Permission = {
@@ -5,7 +6,7 @@ const Permission = {
     try {
       let r = await DB.getInstance().query(
         conn,
-        `SELECT COUNT(*) AS count FROM appointments WHERE status != ? AND patient_id=?`,
+        `SELECT COUNT(*) AS count FROM appointments WHERE status !=? AND patient_id=?`,
         ['completed', patient_id]
       );
       if (!r) {

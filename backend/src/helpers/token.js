@@ -182,7 +182,7 @@ const TokenHelper = {
         header: {
           alg: 'HS256',
         },
-        expiresIn: 1000 * 60 * 5, // 5 minutes token period
+        expiresIn: 5 * 60, // 5 minutes token period
       }
     );
   },

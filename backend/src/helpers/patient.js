@@ -1,8 +1,11 @@
 const ServerError = require('.');
+const ResponseCodes = require('../apis');
+const DB = require('../service/db');
 const ServerUtil = require('../utils');
 const Permission = require('./permission');
 const TokenHelper = require('./token');
 const Validation = require('./validation');
+const moment = require('moment');
 
 const PatientHelper = async (req, res) => {
   // get user from request with his token on header
@@ -32,18 +35,9 @@ module.exports = PatientHelper;
 
 const PatientHelperInternal = {
   createAppointment: async (req, res, patient) => {
-    const appointment_name = req.body.appointment_name;
     const department_id = req.body.department_id;
     const description = req.body.description;
     const appointed_at = req.body.appointed_at;
-
-    if (
-      !appointment_name ||
-      typeof appointment_name !== 'string' ||
-      appointment_name.length === 0
-    ) {
-      return ServerError.sendForbidden(res, 'appointment name is required');
-    }
 
     if (
       !department_id ||
@@ -80,17 +74,25 @@ const PatientHelperInternal = {
       return ServerError.sendNotFound(res, 'department not exist');
     }
 
+    console.log('[PatientHelperInternal]: createAppointment: pass 1');
+
     // check if patient can new appointment
     const can_create_new_appointment =
       await Permission.canPatientCreateAppointment(conn, patient.id);
+    console.log(
+      '[PatientHelperInternal]: createAppointment: can_create_new_appointment: ',
+      can_create_new_appointment
+    );
     if (can_create_new_appointment === 'error') {
       DB.getInstance().releaseConnection();
       return ServerError.sendInternalServerError(res);
     }
-    if (!can_create_new_appointment) {
+    if (can_create_new_appointment === false) {
       DB.getInstance().releaseConnection();
       return ServerError.sendUnauthorized(res, 'cannot create new appointment');
     }
+
+    console.log('[PatientHelperInternal]: createAppointment: pass 1');
 
     const _description = typeof description === 'string' ? description : '';
 
