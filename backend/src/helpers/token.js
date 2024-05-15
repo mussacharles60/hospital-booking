@@ -23,7 +23,7 @@ const TokenHelper = {
     try {
       conn = await DB.getInstance().getConnection();
     } catch (error) {
-      Console.error('[TokenHelper]: getUser: getConnection: error', error);
+      console.error('[TokenHelper]: getUser: getConnection: error', error);
       ServerError.sendInternalServerError(res);
       return null;
     }

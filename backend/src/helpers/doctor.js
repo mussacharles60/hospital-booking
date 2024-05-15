@@ -1,4 +1,5 @@
 const ServerError = require('.');
+const ResponseCodes = require('../apis');
 const DB = require('../service/db');
 const ServerUtil = require('../utils');
 const Permission = require('./permission');
@@ -157,12 +158,15 @@ const DoctorHelperInternal = {
         conn,
         [
           `SELECT AP.*, `,
-          `DP.name as department_name, D.name as doctor_name `,
+          `DP.name as department_name, D.name as doctor_name, `,
+          `P.name as patient_name `,
           `FROM appointments AP `,
           `LEFT JOIN departments DP `,
-          `ON AP.department_id = DP.id`,
+          `ON AP.department_id = DP.id `,
           `LEFT JOIN doctors D `,
-          `ON AP.doctor_id = D.id`,
+          `ON AP.doctor_id = D.id `,
+          `LEFT JOIN patients P `,
+          `ON AP.patient_id = P.id `,
           department.leader_id === doctor.id
             ? `WHERE AP.department_id=?`
             : `WHERE AP.department_id=? AND AP.doctor_id=?`,
@@ -193,8 +197,8 @@ const DoctorHelperInternal = {
           name: ap.department_name || undefined,
         },
         patient: {
-          id: patient.id,
-          name: patient.name,
+          id: ap.patient_id,
+          name: ap.patient_name,
         },
         doctor: {
           id: ap.doctor_id,
@@ -295,6 +299,25 @@ const DoctorHelperInternal = {
       return ServerError.sendNotFound(res, 'doctor not exist');
     }
 
+    // check if doctor exist on this department
+    const doctor_exist_in_department =
+      await Validation.isDoctorExistInDepartment(
+        conn,
+        department.id,
+        doctor_id
+      );
+    if (doctor === 'error') {
+      DB.getInstance().releaseConnection(conn);
+      return ServerError.sendInternalServerError(res);
+    }
+    if (doctor_exist_in_department === false) {
+      DB.getInstance().releaseConnection(conn);
+      return ServerError.sendNotFound(
+        res,
+        'doctor is not exist in this department'
+      );
+    }
+
     // check if appointment exist
     const appointment = await Validation.getAppointmentIfExist(
       conn,
@@ -309,8 +332,30 @@ const DoctorHelperInternal = {
       return ServerError.sendNotFound(res, 'appointment not exist');
     }
 
+    // check if patient exist
+    const patient = await Validation.getPatientIfExist(
+      conn,
+      appointment.patient_id
+    );
+    if (patient === 'error') {
+      DB.getInstance().releaseConnection(conn);
+      return ServerError.sendInternalServerError(res);
+    }
+    if (patient === 'not-found') {
+      DB.getInstance().releaseConnection(conn);
+      return ServerError.sendNotFound(res, 'patient is no longer exist');
+    }
+
     // get current server date
     const date = moment().utc().valueOf();
+
+    if (appointed_at < date) {
+      DB.getInstance().releaseConnection();
+      return ServerError.sendConflict(
+        res,
+        'appointment date should be greater than current date'
+      );
+    }
 
     // send assigned status to patient
     // ...
@@ -367,7 +412,7 @@ const DoctorHelperInternal = {
             },
             created_at: appointment.created_at,
             updated_at: date,
-            appointed_at,
+            appointed_at: appointed_at,
             status: email_sent
               ? 'assigned-email_sent'
               : 'assigned-email_not_sent',
@@ -410,6 +455,14 @@ const DoctorHelperInternal = {
       return ServerError.sendNotFound(res, 'appointment not exist');
     }
 
+    if (!appointment.doctor_id) {
+      DB.getInstance().releaseConnection(conn);
+      return ServerError.sendForbidden(
+        res,
+        'this appointment does not assigned yet'
+      );
+    }
+
     // check if department exist
     const department = await Validation.getDepartmentIfExist(
       conn,
@@ -422,6 +475,20 @@ const DoctorHelperInternal = {
     if (department === 'not-found') {
       DB.getInstance().releaseConnection(conn);
       return ServerError.sendNotFound(res, 'department not exist');
+    }
+
+    // check if patient exist
+    const patient = await Validation.getPatientIfExist(
+      conn,
+      appointment.patient_id
+    );
+    if (patient === 'error') {
+      DB.getInstance().releaseConnection(conn);
+      return ServerError.sendInternalServerError(res);
+    }
+    if (patient === 'not-found') {
+      DB.getInstance().releaseConnection(conn);
+      return ServerError.sendNotFound(res, 'patient is no longer exist');
     }
 
     // get current server date
@@ -508,6 +575,14 @@ const DoctorHelperInternal = {
       return ServerError.sendNotFound(res, 'appointment not exist');
     }
 
+    if (!appointment.doctor_id) {
+      DB.getInstance().releaseConnection(conn);
+      return ServerError.sendForbidden(
+        res,
+        'this appointment does not assigned yet'
+      );
+    }
+
     // check if department exist
     const department = await Validation.getDepartmentIfExist(
       conn,
@@ -520,6 +595,20 @@ const DoctorHelperInternal = {
     if (department === 'not-found') {
       DB.getInstance().releaseConnection(conn);
       return ServerError.sendNotFound(res, 'department not exist');
+    }
+
+    // check if patient exist
+    const patient = await Validation.getPatientIfExist(
+      conn,
+      appointment.patient_id
+    );
+    if (patient === 'error') {
+      DB.getInstance().releaseConnection(conn);
+      return ServerError.sendInternalServerError(res);
+    }
+    if (patient === 'not-found') {
+      DB.getInstance().releaseConnection(conn);
+      return ServerError.sendNotFound(res, 'patient is no longer exist');
     }
 
     // get current server date

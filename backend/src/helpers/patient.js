@@ -101,6 +101,14 @@ const PatientHelperInternal = {
     // get current server date
     const date = moment().utc().valueOf();
 
+    if (appointed_at < date) {
+      DB.getInstance().releaseConnection();
+      return ServerError.sendConflict(
+        res,
+        'appointment date should be greater than current date'
+      );
+    }
+
     try {
       let r = await DB.getInstance().query(
         conn,
@@ -209,6 +217,14 @@ const PatientHelperInternal = {
     // get current server date
     const date = moment().utc().valueOf();
 
+    if (appointed_at < date) {
+      DB.getInstance().releaseConnection();
+      return ServerError.sendConflict(
+        res,
+        'appointment date should be greater than current date'
+      );
+    }
+
     try {
       let r = await DB.getInstance().query(
         conn,
@@ -227,7 +243,7 @@ const PatientHelperInternal = {
     // check if department exist
     const department = await Validation.getDepartmentIfExist(
       conn,
-      department_id
+      appointment.department_id
     );
     if (department === 'error') {
       DB.getInstance().releaseConnection();
@@ -306,6 +322,11 @@ const PatientHelperInternal = {
       );
     }
 
+    if (appointment.status === 'completed') {
+      DB.getInstance().releaseConnection();
+      return ServerError.sendForbidden(res, 'appointment is already completed');
+    }
+
     // get current server date
     const date = moment().utc().valueOf();
 
@@ -326,7 +347,7 @@ const PatientHelperInternal = {
 
     const department = await Validation.getDepartmentIfExist(
       conn,
-      department_id
+      appointment.department_id
     );
     if (department === 'error') {
       DB.getInstance().releaseConnection();
@@ -363,7 +384,7 @@ const PatientHelperInternal = {
             },
             doctor: {
               id: appointment.doctor_id,
-              name: doctor !== 'not-found' ? doctor.name : undefined,
+              name: doctor !== 'not-found' && doctor ? doctor.name : undefined,
             },
             created_at: appointment.created_at,
             updated_at: date,
@@ -394,9 +415,9 @@ const PatientHelperInternal = {
           `DP.name as department_name, D.name as doctor_name `,
           `FROM appointments AP `,
           `LEFT JOIN departments DP `,
-          `ON AP.department_id = DP.id`,
+          `ON AP.department_id = DP.id `,
           `LEFT JOIN doctors D `,
-          `ON AP.doctor_id = D.id`,
+          `ON AP.doctor_id = D.id `,
           `WHERE AP.patient_id=?`,
         ].join(''),
         [patient.id]

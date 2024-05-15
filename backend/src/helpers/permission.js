@@ -6,8 +6,8 @@ const Permission = {
     try {
       let r = await DB.getInstance().query(
         conn,
-        `SELECT COUNT(*) AS count FROM appointments WHERE status !=? AND patient_id=?`,
-        ['completed', patient_id]
+        `SELECT COUNT(*) AS count FROM appointments WHERE status=? AND patient_id=?`,
+        ['pending', patient_id]
       );
       if (!r) {
         return 'error';
