@@ -11,12 +11,13 @@ const ServerError = {
       })
     );
   },
-  sendUnauthorized: (res, message) => {
+  sendUnauthorized: (res, message, reason = undefined) => {
     return res.status(ResponseCodes.ClientError.UNAUTHORIZED).send(
       JSON.stringify({
         error: {
           code: ResponseCodes.ClientError.UNAUTHORIZED,
           message,
+          reason,
         },
       })
     ); // unauthorized
