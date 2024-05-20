@@ -165,7 +165,7 @@ const AuthHelperInternal = {
         code: ResponseCodes.Success.OK,
         message: 'admin logged in',
         data: {
-          token: access_token,
+          access_token,
           token_type: 'Bearer',
           admin: {
             id: admin.id,
@@ -275,13 +275,17 @@ const AuthHelperInternal = {
   },
   adminPasswordRecover: async (req, res) => {
     const token = req.body.token;
-    const password = req.body.password;
+    const new_password = req.body.new_password;
 
     if (!token || typeof token !== 'string' || token.length === 0) {
       return ServerError.sendForbidden(res, 'token is required');
     }
-    if (!password || typeof password !== 'string' || password.length === 0) {
-      return ServerError.sendForbidden(res, 'password is required');
+    if (
+      !new_password ||
+      typeof new_password !== 'string' ||
+      new_password.length === 0
+    ) {
+      return ServerError.sendForbidden(res, 'new password is required');
     }
 
     // get payload from token
@@ -337,7 +341,7 @@ const AuthHelperInternal = {
     try {
       const saltRounds = 10;
       const salt = await bcrypt.genSalt(saltRounds);
-      hash = await bcrypt.hash(password, salt);
+      hash = await bcrypt.hash(new_password, salt);
     } catch (error) {
       console.error(
         '[AuthHelper]: AuthHelperInternal: adminPasswordRecover: bcrypt.hash: error',
@@ -388,7 +392,7 @@ const AuthHelperInternal = {
       return;
     }
     const old_password = req.body.old_password;
-    const password = req.body.password;
+    const new_password = req.body.new_password;
 
     if (
       !old_password ||
@@ -397,7 +401,11 @@ const AuthHelperInternal = {
     ) {
       return ServerError.sendForbidden(res, 'old password is required');
     }
-    if (!password || typeof password !== 'string' || password.length === 0) {
+    if (
+      !new_password ||
+      typeof new_password !== 'string' ||
+      new_password.length === 0
+    ) {
       return ServerError.sendForbidden(res, 'new password is required');
     }
 
@@ -424,7 +432,7 @@ const AuthHelperInternal = {
     try {
       const saltRounds = 10;
       const salt = await bcrypt.genSalt(saltRounds);
-      hash = await bcrypt.hash(password, salt);
+      hash = await bcrypt.hash(new_password, salt);
     } catch (error) {
       console.error(
         '[AuthHelper]: AuthHelperInternal: adminPasswordChange: bcrypt.hash: error',
@@ -779,7 +787,7 @@ const AuthHelperInternal = {
         code: ResponseCodes.Success.OK,
         message: 'doctor logged in',
         data: {
-          token: access_token,
+          access_token,
           token_type: 'Bearer',
           doctor: {
             id: doctor.id,
@@ -889,13 +897,17 @@ const AuthHelperInternal = {
   },
   doctorPasswordRecover: async (req, res) => {
     const token = req.body.token;
-    const password = req.body.password;
+    const new_password = req.body.new_password;
 
     if (!token || typeof token !== 'string' || token.length === 0) {
       return ServerError.sendForbidden(res, 'token is required');
     }
-    if (!password || typeof password !== 'string' || password.length === 0) {
-      return ServerError.sendForbidden(res, 'password is required');
+    if (
+      !new_password ||
+      typeof new_password !== 'string' ||
+      new_password.length === 0
+    ) {
+      return ServerError.sendForbidden(res, 'new password is required');
     }
 
     // get payload from token
@@ -951,7 +963,7 @@ const AuthHelperInternal = {
     try {
       const saltRounds = 10;
       const salt = await bcrypt.genSalt(saltRounds);
-      hash = await bcrypt.hash(password, salt);
+      hash = await bcrypt.hash(new_password, salt);
     } catch (error) {
       console.error(
         '[AuthHelper]: AuthHelperInternal: doctorPasswordRecover: bcrypt.hash: error',
@@ -1002,7 +1014,7 @@ const AuthHelperInternal = {
       return;
     }
     const old_password = req.body.old_password;
-    const password = req.body.password;
+    const new_password = req.body.new_password;
 
     if (
       !old_password ||
@@ -1011,7 +1023,11 @@ const AuthHelperInternal = {
     ) {
       return ServerError.sendForbidden(res, 'old password is required');
     }
-    if (!password || typeof password !== 'string' || password.length === 0) {
+    if (
+      !new_password ||
+      typeof new_password !== 'string' ||
+      new_password.length === 0
+    ) {
       return ServerError.sendForbidden(res, 'new password is required');
     }
 
@@ -1044,7 +1060,7 @@ const AuthHelperInternal = {
     try {
       const saltRounds = 10;
       const salt = await bcrypt.genSalt(saltRounds);
-      hash = await bcrypt.hash(password, salt);
+      hash = await bcrypt.hash(new_password, salt);
     } catch (error) {
       console.error(
         '[AuthHelper]: AuthHelperInternal: doctorPasswordChange: bcrypt.hash: error',
@@ -1289,7 +1305,7 @@ const AuthHelperInternal = {
         code: ResponseCodes.Success.OK,
         message: 'patient logged in',
         data: {
-          token: access_token,
+          access_token,
           token_type: 'Bearer',
           patient: {
             id: patient.id,
@@ -1399,13 +1415,17 @@ const AuthHelperInternal = {
   },
   patientPasswordRecover: async (req, res) => {
     const token = req.body.token;
-    const password = req.body.password;
+    const new_password = req.body.new_password;
 
     if (!token || typeof token !== 'string' || token.length === 0) {
       return ServerError.sendForbidden(res, 'token is required');
     }
-    if (!password || typeof password !== 'string' || password.length === 0) {
-      return ServerError.sendForbidden(res, 'password is required');
+    if (
+      !new_password ||
+      typeof new_password !== 'string' ||
+      new_password.length === 0
+    ) {
+      return ServerError.sendForbidden(res, 'new password is required');
     }
 
     // get payload from token
@@ -1461,7 +1481,7 @@ const AuthHelperInternal = {
     try {
       const saltRounds = 10;
       const salt = await bcrypt.genSalt(saltRounds);
-      hash = await bcrypt.hash(password, salt);
+      hash = await bcrypt.hash(new_password, salt);
     } catch (error) {
       console.error(
         '[AuthHelper]: AuthHelperInternal: patientPasswordRecover: bcrypt.hash: error',
@@ -1512,7 +1532,7 @@ const AuthHelperInternal = {
       return;
     }
     const old_password = req.body.old_password;
-    const password = req.body.password;
+    const new_password = req.body.new_password;
 
     if (
       !old_password ||
@@ -1521,7 +1541,11 @@ const AuthHelperInternal = {
     ) {
       return ServerError.sendForbidden(res, 'old password is required');
     }
-    if (!password || typeof password !== 'string' || password.length === 0) {
+    if (
+      !new_password ||
+      typeof new_password !== 'string' ||
+      new_password.length === 0
+    ) {
       return ServerError.sendForbidden(res, 'new password is required');
     }
 
@@ -1554,7 +1578,7 @@ const AuthHelperInternal = {
     try {
       const saltRounds = 10;
       const salt = await bcrypt.genSalt(saltRounds);
-      hash = await bcrypt.hash(password, salt);
+      hash = await bcrypt.hash(new_password, salt);
     } catch (error) {
       console.error(
         '[AuthHelper]: AuthHelperInternal: patientPasswordChange: bcrypt.hash: error',
