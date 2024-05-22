@@ -1,7 +1,7 @@
 export type Department = {
   id: string;
   name: string;
-  type: 'maternity';
+  type: DepartmentType;
   description: string;
   leader: {
     id: string;
@@ -11,3 +11,5 @@ export type Department = {
   updated_at: number;
   profile_photo: null;
 };
+
+export type DepartmentType = 'maternity';

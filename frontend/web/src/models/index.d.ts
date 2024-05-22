@@ -24,6 +24,7 @@ export type APIErrorResponse = {
 export type APIResponseData = {
   admin?: Admin;
   doctor?: Doctor;
+  doctors?: Doctor[];
   department?: Department;
   departments?: Department[];
   patient?: Patient;
@@ -32,6 +33,8 @@ export type APIResponseData = {
   appointments?: Appointment[];
   department_doctor?: DepartmentDoctor;
   department_doctors?: DepartmentDoctor[];
+  //
+  doctor_signup_request_mail_sent?: boolean;
 };
 
 export type AuthResponseData = {

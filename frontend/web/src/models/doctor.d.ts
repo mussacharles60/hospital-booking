@@ -5,6 +5,9 @@ export type Doctor = {
   phone: string;
   created_at: number;
   updated_at: number;
+  registration_status: 'waiting';
+  certificate: null;
+  identity: null;
 };
 
 export type DepartmentDoctor = {
