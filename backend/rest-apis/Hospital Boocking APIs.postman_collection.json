@@ -1,0 +1,4424 @@
+{
+	"info": {
+		"_postman_id": "5af36cac-2974-4018-b85a-51698a47ea53",
+		"name": "Hospital Boocking APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30568990",
+		"_collection_link": "https://red-rocket-604103.postman.co/workspace/Topdoc-APIs~3f1737ab-956a-4513-9883-e4b50db149b1/collection/30568990-5af36cac-2974-4018-b85a-51698a47ea53?action=share&source=collection_link&creator=30568990"
+	},
+	"item": [
+		{
+			"name": "Admin - Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"admin_login\",\r\n    \"email\": \"mussa@myssatech.com\",\r\n    \"password\": \"ADMIN2024\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Admin Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"admin_login\",\r\n    \"email\": \"mussa@myssatech.com\",\r\n    \"password\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "auth-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDBhZTY0ZGZiMTVhMzNiNzFiOGE2ZGVlY2Q4ZjQ3NmEiLCJpYXQiOjE3MTU2MTA0MzUsImV4cCI6MTcxODIwMjQzNX0.2Acyjd4rir3cmhzeG6uCl2JciyBKpfWo-E3ViF0g1x0; Max-Age=2592000; Domain=localhost:5000; Path=/; Expires=Wed, 12 Jun 2024 14:27:15 GMT; HttpOnly; SameSite=Strict"
+						},
+						{
+							"key": "Content-Length",
+							"value": "448"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1c0-p4Xlo9Gzz3xVkVR62k6gZvfUrHI\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 13 May 2024 14:27:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"admin logged in\",\n        \"data\": {\n            \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDBhZTY0ZGZiMTVhMzNiNzFiOGE2ZGVlY2Q4ZjQ3NmEiLCJpYXQiOjE3MTU2MTA0MzUsImV4cCI6MTcxNTY5NjgzNX0.uT7MTVg-Qf3DzLgWJQpWMcyEIwQ8geClmTUPLYoGVmw\",\n            \"token_type\": \"Bearer\",\n            \"admin\": {\n                \"id\": \"40ae64dfb15a33b71b8a6deecd8f476a\",\n                \"name\": \"Mussa Charles\",\n                \"email\": \"mussa@myssatech.com\",\n                \"phone\": \"0716581823\",\n                \"created_at\": 1715355335318,\n                \"updated_at\": 0\n            }\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Admin - Forgot Password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"admin_password_forgot\",\r\n    \"email\": \"mussa@myssatech.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Admin Forgot Password",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"admin_password_forgot\",\r\n    \"email\": \"mussa@myssatech.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "108"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"6c-FqN6UD2fTn8GJuq0JMWPzmQ9iqc\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 13 May 2024 14:39:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"password recover email sent\",\n        \"data\": {\n            \"password_recover_email_sent\": true\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Admin - Password Recover",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"admin_password_recover\",\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDBhZTY0ZGZiMTVhMzNiNzFiOGE2ZGVlY2Q4ZjQ3NmEiLCJpYXQiOjE3MTU2OTM4MjIsImV4cCI6MTcxNTY5NDEyMn0.xvVvHP0_qnLVnGlmk47lmSnIjl5kqOoz5Rx6SG2wiYY\",\r\n    \"new_password\": \"ADMIN2024\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Admin - Password Recover",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"admin_password_recover\",\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDBhZTY0ZGZiMTVhMzNiNzFiOGE2ZGVlY2Q4ZjQ3NmEiLCJpYXQiOjE3MTU2OTM4MjIsImV4cCI6MTcxNTY5NDEyMn0.xvVvHP0_qnLVnGlmk47lmSnIjl5kqOoz5Rx6SG2wiYY\",\r\n    \"new_password\": \"ADMIN2024\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "53"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"35-uEr4KdrCFJmzlnIn2A3e9mt9qOE\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 13:37:20 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"password changed\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Admin  - Change Password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"admin_password_change\",\r\n    \"old_password\": \"admin\",\r\n    \"new_password\": \"ADMIN2024\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin - Account Edit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDBhZTY0ZGZiMTVhMzNiNzFiOGE2ZGVlY2Q4ZjQ3NmEiLCJpYXQiOjE3MTU2MTA0MzUsImV4cCI6MTcxNTY5NjgzNX0.uT7MTVg-Qf3DzLgWJQpWMcyEIwQ8geClmTUPLYoGVmw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"admin_account_edit\",\r\n    \"name\": \"First admin\",\r\n    \"phone\": \"+255716581823\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Admin Account Edit",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"admin_account_edit\",\r\n    \"name\": \"First admin\",\r\n    \"phone\": \"+255716581823\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "240"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"f0-1EP1/JnGejk7hFy7n9SA0zlsrIc\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 13 May 2024 14:38:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"account updated\",\n        \"data\": {\n            \"admin\": {\n                \"id\": \"40ae64dfb15a33b71b8a6deecd8f476a\",\n                \"name\": \"First admin\",\n                \"email\": \"mussa@myssatech.com\",\n                \"phone\": \"+255716581823\",\n                \"created_at\": 1715355335318,\n                \"updated_at\": 1715611137185\n            }\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Admin - Create Department",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDBhZTY0ZGZiMTVhMzNiNzFiOGE2ZGVlY2Q4ZjQ3NmEiLCJpYXQiOjE3MTU2OTY5MTQsImV4cCI6MTcxNTc4MzMxNH0.VK7ic38U6y7qd8dD2AxaRnZBwZVAaH1NZOba9wKVBuw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"create_department\",\r\n    \"department_name\": \"Martenity\",\r\n    \"department_type\": \"martenity\",\r\n    \"description\": \"Our first department about martenity\",\r\n    \"leader_id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"admin"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Admin - Create Department",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"create_department\",\r\n    \"department_name\": \"Martenity\",\r\n    \"department_type\": \"martenity\",\r\n    \"description\": \"Our first department about martenity\",\r\n    \"leader_id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "333"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"14d-+wvb0RvsNi2jqeCaqNOaixyGZ5g\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 13:50:46 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"department created\",\n        \"data\": {\n            \"department\": {\n                \"id\": \"4BVzaxfx7oQnSWUDh0Sx\",\n                \"name\": \"Martenity\",\n                \"type\": \"martenity\",\n                \"description\": \"Our first department about martenity\",\n                \"leader\": {\n                    \"id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\",\n                    \"name\": \"Dr. John AB\"\n                },\n                \"created_at\": 1715694646699,\n                \"updated_at\": 0,\n                \"profile_photo\": null\n            }\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Admin - Edit Department",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDBhZTY0ZGZiMTVhMzNiNzFiOGE2ZGVlY2Q4ZjQ3NmEiLCJpYXQiOjE3MTU2MTA0MzUsImV4cCI6MTcxNTY5NjgzNX0.uT7MTVg-Qf3DzLgWJQpWMcyEIwQ8geClmTUPLYoGVmw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"update_department\",\r\n    \"department_id\": \"4BVzaxfx7oQnSWUDh0Sx\",\r\n    \"department_name\": \"Martenity\",\r\n    \"department_type\": \"martenity\",\r\n    \"description\": \"This is martenity department\",\r\n    \"leader_id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"admin"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Admin - Edit Department",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"update_department\",\r\n    \"department_id\": \"4BVzaxfx7oQnSWUDh0Sx\",\r\n    \"department_name\": \"Martenity\",\r\n    \"department_type\": \"martenity\",\r\n    \"description\": \"This is martenity department\",\r\n    \"leader_id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "337"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"151-GlEnlDXTETFazcMxyq2Pmb+WTow\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 13:57:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"department updated\",\n        \"data\": {\n            \"department\": {\n                \"id\": \"4BVzaxfx7oQnSWUDh0Sx\",\n                \"name\": \"Martenity\",\n                \"type\": \"martenity\",\n                \"description\": \"This is martenity department\",\n                \"leader\": {\n                    \"id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\",\n                    \"name\": \"Dr. John AB\"\n                },\n                \"created_at\": 1715694646699,\n                \"updated_at\": 1715695035524,\n                \"profile_photo\": null\n            }\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Admin - Remove Department",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDBhZTY0ZGZiMTVhMzNiNzFiOGE2ZGVlY2Q4ZjQ3NmEiLCJpYXQiOjE3MTU2OTY5MTQsImV4cCI6MTcxNTc4MzMxNH0.VK7ic38U6y7qd8dD2AxaRnZBwZVAaH1NZOba9wKVBuw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"remove_department\",\r\n    \"department_id\": \"M0SQ76KyEbdEou8gxRHf\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"admin"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Admin - Remove Department",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"remove_department\",\r\n    \"department_id\": \"M0SQ76KyEbdEou8gxRHf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "55"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"37-Rt+leldMf8G3bc5/UEjWnFHep8A\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 14:42:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"department deleted\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Admin - Get Departments Data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDBhZTY0ZGZiMTVhMzNiNzFiOGE2ZGVlY2Q4ZjQ3NmEiLCJpYXQiOjE3MTU2OTY5MTQsImV4cCI6MTcxNTc4MzMxNH0.VK7ic38U6y7qd8dD2AxaRnZBwZVAaH1NZOba9wKVBuw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"departments_data\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"admin"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Admin - Get Departments Data",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"departments_data\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "359"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"167-GCNx740gcIMaARCrmlP8y9kOsAU\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 14:01:28 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"returned departments data with 1 item\",\n        \"data\": {\n            \"departments\": [\n                {\n                    \"id\": \"4BVzaxfx7oQnSWUDh0Sx\",\n                    \"name\": \"Martenity\",\n                    \"type\": \"martenity\",\n                    \"description\": \"This is martenity department\",\n                    \"leader\": {\n                        \"id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\",\n                        \"name\": \"Dr. John AB\"\n                    },\n                    \"created_at\": 1715694646699,\n                    \"updated_at\": 1715695035524,\n                    \"profile_photo\": null\n                }\n            ]\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Admin - Check Doctors Signup Requests",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDBhZTY0ZGZiMTVhMzNiNzFiOGE2ZGVlY2Q4ZjQ3NmEiLCJpYXQiOjE3MTU2MTA0MzUsImV4cCI6MTcxNTY5NjgzNX0.uT7MTVg-Qf3DzLgWJQpWMcyEIwQ8geClmTUPLYoGVmw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"doctors_signup_requests_data\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"admin"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Admin - Check Doctors Signup Requests",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"doctors_signup_requests_data\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "512"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"200-GdDh/saBE9QuUYp0ZFjkLaH57M4\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 13 May 2024 14:58:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"returned doctors data with 2 items\",\n        \"data\": {\n            \"doctors\": [\n                {\n                    \"id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\",\n                    \"name\": \"Dr John H\",\n                    \"email\": \"johnH@example.com\",\n                    \"phone\": \"+255717704372\",\n                    \"certificate\": null,\n                    \"identity\": null,\n                    \"registration_status\": \"waiting\",\n                    \"created_at\": 1715611991072\n                },\n                {\n                    \"id\": \"zAJn93ccVqHgPn628XRfqBUikHcx0EdC\",\n                    \"name\": \"Dr Edgar Emanuel\",\n                    \"email\": \"edgar@example.com\",\n                    \"phone\": \"+25512346778\",\n                    \"certificate\": null,\n                    \"identity\": null,\n                    \"registration_status\": \"waiting\",\n                    \"created_at\": 1715612225984\n                }\n            ]\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Admin - Get Doctors Data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDBhZTY0ZGZiMTVhMzNiNzFiOGE2ZGVlY2Q4ZjQ3NmEiLCJpYXQiOjE3MTU2MTA0MzUsImV4cCI6MTcxNTY5NjgzNX0.uT7MTVg-Qf3DzLgWJQpWMcyEIwQ8geClmTUPLYoGVmw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"doctors_data\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"admin"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Admin - Get Doctors Data",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"doctors_data\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "93"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"5d-MNN+2NtcEgS2eSu9Qarvr9Xscq4\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 13 May 2024 14:46:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"returned doctors data with 0 items\",\n        \"data\": {\n            \"doctors\": []\n        }\n    }\n}"
+				},
+				{
+					"name": "Admin - Get Doctors Data",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"doctors_data\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "300"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"12c-YxYRYJZaSKELoarqlBylQZK6OS0\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 13 May 2024 15:10:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"returned doctors data with 1 item\",\n        \"data\": {\n            \"doctors\": [\n                {\n                    \"id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\",\n                    \"name\": \"Dr John H\",\n                    \"email\": \"johnH@example.com\",\n                    \"phone\": \"+255717704372\",\n                    \"certificate\": null,\n                    \"identity\": null,\n                    \"registration_status\": \"completed\",\n                    \"created_at\": 1715612885179\n                }\n            ]\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Admin - Get Department Doctors Data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDBhZTY0ZGZiMTVhMzNiNzFiOGE2ZGVlY2Q4ZjQ3NmEiLCJpYXQiOjE3MTU2OTY5MTQsImV4cCI6MTcxNTc4MzMxNH0.VK7ic38U6y7qd8dD2AxaRnZBwZVAaH1NZOba9wKVBuw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"department_doctors_data\",\r\n    \"department_id\": \"vBLNLvyfnUCZvcFMj3np\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"admin"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Admin - Get Department Doctors Data",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"department_doctors_data\",\r\n    \"department_id\": \"vBLNLvyfnUCZvcFMj3np\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "250"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"fa-ncFKVoAUCeeTEuatR/3myieLb5g\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 15:13:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"list of doctors in department\",\n        \"data\": {\n            \"department_doctors\": [\n                {\n                    \"id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\",\n                    \"name\": \"Dr. John AB\",\n                    \"created_at\": 1715698741149,\n                    \"department\": {\n                        \"id\": \"vBLNLvyfnUCZvcFMj3np\",\n                        \"name\": \"Martenity\"\n                    }\n                }\n            ]\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Admin - Verify Doctor Signup Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDBhZTY0ZGZiMTVhMzNiNzFiOGE2ZGVlY2Q4ZjQ3NmEiLCJpYXQiOjE3MTU2MTA0MzUsImV4cCI6MTcxNTY5NjgzNX0.uT7MTVg-Qf3DzLgWJQpWMcyEIwQ8geClmTUPLYoGVmw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"verify_doctor_signup_request\",\r\n    \"doctor_id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"admin"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Admin - Verify Doctor Signup Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"verify_doctor_signup_request\",\r\n    \"doctor_id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "116"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"74-0gbdspTos8JBLgbwEQW9oAfrPh0\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 13 May 2024 15:02:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"doctor signup request mail sent\",\n        \"data\": {\n            \"doctor_signup_request_mail_sent\": true\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Admin - Add Doctor To Department",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDBhZTY0ZGZiMTVhMzNiNzFiOGE2ZGVlY2Q4ZjQ3NmEiLCJpYXQiOjE3MTU2OTY5MTQsImV4cCI6MTcxNTc4MzMxNH0.VK7ic38U6y7qd8dD2AxaRnZBwZVAaH1NZOba9wKVBuw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"add_doctor_to_department\",\r\n    \"department_id\": \"vBLNLvyfnUCZvcFMj3np\",\r\n    \"doctor_id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"admin"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Admin - Add Doctor To Department",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"add_doctor_to_department\",\r\n    \"department_id\": \"vBLNLvyfnUCZvcFMj3np\",\r\n    \"doctor_id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "244"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"f4-dg+y/Iyc5QVy0D2Juy2NzBaZ2/k\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 14:51:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"doctor added to department\",\n        \"data\": {\n            \"department_doctor\": {\n                \"id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\",\n                \"name\": \"Dr. John AB\",\n                \"department\": {\n                    \"id\": \"vBLNLvyfnUCZvcFMj3np\",\n                    \"name\": \"Martenity\"\n                },\n                \"created_at\": 1715698277941\n            }\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Admin - Remove Doctor From Department",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDBhZTY0ZGZiMTVhMzNiNzFiOGE2ZGVlY2Q4ZjQ3NmEiLCJpYXQiOjE3MTU2OTY5MTQsImV4cCI6MTcxNTc4MzMxNH0.VK7ic38U6y7qd8dD2AxaRnZBwZVAaH1NZOba9wKVBuw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"remove_doctor_from_department\",\r\n    \"department_id\": \"vBLNLvyfnUCZvcFMj3np\",\r\n    \"doctor_id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"admin"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Admin - Remove Doctor From Department",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"remove_doctor_from_department\",\r\n    \"department_id\": \"vBLNLvyfnUCZvcFMj3np\",\r\n    \"doctor_id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "67"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"43-qxqgfHCm4iTuT1a3t5buMnHAywA\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 14:56:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"doctor removed from department\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Doctor - Signup Request",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"admin_request_signup\",\r\n    \"name\": \"Dr Edgar Emanuel\",\r\n    \"email\": \"edgar@example.com\",\r\n    \"phone\": \"+25512346778\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Doctor - Signup Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"admin_request_signup\",\r\n    \"name\": \"Dr Edgar Emanuel\",\r\n    \"email\": \"edgar@example.com\",\r\n    \"phone\": \"+25512346778\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "72"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"48-i1zR9bNQcwG/UI87u9ebHneRmPc\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 13 May 2024 14:57:06 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"doctor signup request is in preview\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Doctor - Signup",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"doctor_signup\",\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoicmdmYUFNcVM3dVZGNUYwQjFQeEhJdWdNMnNrdWZucTEiLCJpYXQiOjE3MTU2MTI1NzIsImV4cCI6MTcxNTY5ODk3Mn0._fWPe1WFnUAdeM7XZujUE9LzVbzv_HTeXwP-gntsSh4\",\r\n    \"password\": \"john2024\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Doctor - Signup",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"doctor_signup\",\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoicmdmYUFNcVM3dVZGNUYwQjFQeEhJdWdNMnNrdWZucTEiLCJpYXQiOjE3MTU2MTI1NzIsImV4cCI6MTcxNTY5ODk3Mn0._fWPe1WFnUAdeM7XZujUE9LzVbzv_HTeXwP-gntsSh4\",\r\n    \"password\": \"john2024\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "auth-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoicmdmYUFNcVM3dVZGNUYwQjFQeEhJdWdNMnNrdWZucTEiLCJpYXQiOjE3MTU2MTI4ODUsImV4cCI6MTcxODIwNDg4NX0.kRybW2CYoPgnSMlap5VtBk2tT9BUPpSRlSaXuZ4bVxQ; Max-Age=2592000; Domain=localhost:5000; Path=/; Expires=Wed, 12 Jun 2024 15:08:05 GMT; HttpOnly; SameSite=Strict"
+						},
+						{
+							"key": "Content-Length",
+							"value": "436"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1b4-niA4sc55EEMVraaRv5/qjDItKp0\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 13 May 2024 15:08:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"doctor account created\",\n        \"data\": {\n            \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoicmdmYUFNcVM3dVZGNUYwQjFQeEhJdWdNMnNrdWZucTEiLCJpYXQiOjE3MTU2MTI4ODUsImV4cCI6MTcxNTY5OTI4NX0.1SGIFiZc6nSaSO0ILUA_odLyBWovZrh0ax7dJYhwbHM\",\n            \"token_type\": \"Bearer\",\n            \"doctor\": {\n                \"id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\",\n                \"name\": \"Dr John H\",\n                \"email\": \"johnH@example.com\",\n                \"created_at\": 1715612885179,\n                \"updated_at\": 0\n            }\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Doctor - Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"doctor_login\",\r\n    \"email\": \"johnH@example.com\",\r\n    \"password\": \"johnwick\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Doctor - Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"doctor_login\",\r\n    \"email\": \"johnH@example.com\",\r\n    \"password\": \"john2024\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "auth-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoicmdmYUFNcVM3dVZGNUYwQjFQeEhJdWdNMnNrdWZucTEiLCJpYXQiOjE3MTU2MTUwNzQsImV4cCI6MTcxODIwNzA3NH0.jGjbpg5pRqeImf1H3Dx4qdyejq1-trYQUn9yr17YgWw; Max-Age=2592000; Domain=localhost:5000; Path=/; Expires=Wed, 12 Jun 2024 15:44:34 GMT; HttpOnly; SameSite=Strict"
+						},
+						{
+							"key": "Content-Length",
+							"value": "447"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1bf-tKH+ipAqSScC/vr4IYorFQUXLMU\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 13 May 2024 15:44:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"doctor logged in\",\n        \"data\": {\n            \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoicmdmYUFNcVM3dVZGNUYwQjFQeEhJdWdNMnNrdWZucTEiLCJpYXQiOjE3MTU2MTUwNzQsImV4cCI6MTcxNTcwMTQ3NH0.iRacuDYM71P6PGvUqZbM3sKUCUJ-Eylu-MzZ5fFFtVo\",\n            \"token_type\": \"Bearer\",\n            \"doctor\": {\n                \"id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\",\n                \"name\": \"Dr John H\",\n                \"email\": \"johnH@example.com\",\n                \"phone\": \"+255717704372\",\n                \"created_at\": 1715612885179,\n                \"updated_at\": 0\n            }\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Doctor - Account Edit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoicmdmYUFNcVM3dVZGNUYwQjFQeEhJdWdNMnNrdWZucTEiLCJpYXQiOjE3MTU2MTUwNzQsImV4cCI6MTcxNTcwMTQ3NH0.iRacuDYM71P6PGvUqZbM3sKUCUJ-Eylu-MzZ5fFFtVo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"doctor_account_edit\",\r\n    \"name\": \"Dr. John AB\",\r\n    \"phone\": \"+25500000000\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Doctor - Account Edit",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"doctor_account_edit\",\r\n    \"name\": \"Dr. John AB\",\r\n    \"phone\": \"+25500000000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "238"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"ee-IMyKc550gb/gQiMEtLCEiRMaWzY\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 13 May 2024 15:51:50 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"account updated\",\n        \"data\": {\n            \"doctor\": {\n                \"id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\",\n                \"name\": \"Dr. John AB\",\n                \"email\": \"johnH@example.com\",\n                \"phone\": \"+25500000000\",\n                \"created_at\": 1715612885179,\n                \"updated_at\": 1715615510279\n            }\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Doctor - Forgot Password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"doctor_password_forgot\",\r\n    \"email\": \"johnH@example.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Doctor - Forgot Password",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"doctor_password_forgot\",\r\n    \"email\": \"johnH@example.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "108"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"6c-FqN6UD2fTn8GJuq0JMWPzmQ9iqc\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 13 May 2024 15:55:02 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"password recover email sent\",\n        \"data\": {\n            \"password_recover_email_sent\": true\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Doctor - Password Recover",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"doctor_password_recover\",\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoicmdmYUFNcVM3dVZGNUYwQjFQeEhJdWdNMnNrdWZucTEiLCJpYXQiOjE3MTU2MTU5OTQsImV4cCI6MTcxNTkxNTk5NH0.maGti40pcZ3ePSqX0DsbUrUylQbEtUOeyBdWnNDmfu4\",\r\n    \"new_password\": \"john2024\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Doctor - Passwod Recover",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"doctor_password_recover\",\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoicmdmYUFNcVM3dVZGNUYwQjFQeEhJdWdNMnNrdWZucTEiLCJpYXQiOjE3MTU2MTU5OTQsImV4cCI6MTcxNTkxNTk5NH0.maGti40pcZ3ePSqX0DsbUrUylQbEtUOeyBdWnNDmfu4\",\r\n    \"new_password\": \"john2024\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "53"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"35-uEr4KdrCFJmzlnIn2A3e9mt9qOE\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 13 May 2024 16:00:37 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"password changed\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Doctor  - Change Password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoicmdmYUFNcVM3dVZGNUYwQjFQeEhJdWdNMnNrdWZucTEiLCJpYXQiOjE3MTU2MTUwNzQsImV4cCI6MTcxNTcwMTQ3NH0.iRacuDYM71P6PGvUqZbM3sKUCUJ-Eylu-MzZ5fFFtVo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"doctor_password_change\",\r\n    \"old_password\": \"john2024\",\r\n    \"new_password\": \"johnwick\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Admin  - Change Password Copy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"doctor_password_change\",\r\n    \"old_password\": \"john2024\",\r\n    \"new_password\": \"johnwick\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "53"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"35-uEr4KdrCFJmzlnIn2A3e9mt9qOE\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 13:45:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"password changed\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Doctor - Get Departments",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoicmdmYUFNcVM3dVZGNUYwQjFQeEhJdWdNMnNrdWZucTEiLCJpYXQiOjE3MTU3ODcxMTksImV4cCI6MTcxNTg3MzUxOX0.UFofaxCfRrAB2bMEIRojMDWRqmM_OB4wFC1t3YnBgRo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"departments_data\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/doctor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"doctor"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"departments_data\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/doctor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"doctor"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "355"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"163-+PVJTMsDfBM3T6RRl278R1hcIgk\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 May 2024 15:34:19 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"returned departments data with 1 item\",\n        \"data\": {\n            \"departments\": [\n                {\n                    \"id\": \"vBLNLvyfnUCZvcFMj3np\",\n                    \"name\": \"Martenity\",\n                    \"type\": \"martenity\",\n                    \"description\": \"Our first department about martenity\",\n                    \"leader\": {\n                        \"id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\",\n                        \"name\": \"Dr. John AB\"\n                    },\n                    \"created_at\": 1715698025859,\n                    \"updated_at\": 0,\n                    \"profile_photo\": null\n                }\n            ]\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Doctor - Get Department Appointments",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoicmdmYUFNcVM3dVZGNUYwQjFQeEhJdWdNMnNrdWZucTEiLCJpYXQiOjE3MTU3ODcxMTksImV4cCI6MTcxNTg3MzUxOX0.UFofaxCfRrAB2bMEIRojMDWRqmM_OB4wFC1t3YnBgRo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"department_appointments_data\",\r\n    \"department_id\": \"vBLNLvyfnUCZvcFMj3np\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/doctor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"doctor"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"department_appointments_data\",\r\n    \"department_id\": \"vBLNLvyfnUCZvcFMj3np\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/doctor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"doctor"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "740"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2e4-WdCr0u7rk5WyE0YwwEJNLqROaUQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 May 2024 15:42:04 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"returned appointments data with 2 items\",\n        \"data\": {\n            \"appointments\": [\n                {\n                    \"id\": \"YQyXUryZpYWj9lxglhRr\",\n                    \"description\": \"Headache, just headache\",\n                    \"department\": {\n                        \"id\": \"vBLNLvyfnUCZvcFMj3np\",\n                        \"name\": \"Martenity\"\n                    },\n                    \"patient\": {\n                        \"id\": \"MR8ZumXywjgC6gYW9bB7NM0ivX4lN9RD\",\n                        \"name\": \"Christina John\"\n                    },\n                    \"doctor\": {\n                        \"id\": null\n                    },\n                    \"created_at\": 1715705013044,\n                    \"updated_at\": 0,\n                    \"appointed_at\": 1684152000000,\n                    \"status\": \"pending\"\n                },\n                {\n                    \"id\": \"nFo9PvIvubcImvmQJBoO\",\n                    \"description\": \"Headache, just headache\",\n                    \"department\": {\n                        \"id\": \"vBLNLvyfnUCZvcFMj3np\",\n                        \"name\": \"Martenity\"\n                    },\n                    \"patient\": {\n                        \"id\": \"MR8ZumXywjgC6gYW9bB7NM0ivX4lN9RD\",\n                        \"name\": \"Christina John\"\n                    },\n                    \"doctor\": {\n                        \"id\": null\n                    },\n                    \"created_at\": 1715705044378,\n                    \"updated_at\": 0,\n                    \"appointed_at\": 1684152000000,\n                    \"status\": \"pending\"\n                }\n            ]\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Doctor - Assign Appointment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoicmdmYUFNcVM3dVZGNUYwQjFQeEhJdWdNMnNrdWZucTEiLCJpYXQiOjE3MTU3ODcxMTksImV4cCI6MTcxNTg3MzUxOX0.UFofaxCfRrAB2bMEIRojMDWRqmM_OB4wFC1t3YnBgRo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"assign_appointment\",\r\n    \"appointment_id\": \"YQyXUryZpYWj9lxglhRr\",\r\n    \"department_id\": \"vBLNLvyfnUCZvcFMj3np\",\r\n    \"doctor_id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/doctor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"doctor"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"assign_appointment\",\r\n    \"appointment_id\": \"YQyXUryZpYWj9lxglhRr\",\r\n    \"department_id\": \"vBLNLvyfnUCZvcFMj3np\",\r\n    \"doctor_id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/doctor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"doctor"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "504"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1f8-unLiIK53FA18SbCLmgLOY4mMUOc\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 May 2024 15:54:04 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"appointment assigned and email was sent to patient\",\n        \"data\": {\n            \"appointment\": {\n                \"id\": \"YQyXUryZpYWj9lxglhRr\",\n                \"description\": \"Headache, just headache\",\n                \"department\": {\n                    \"id\": \"vBLNLvyfnUCZvcFMj3np\",\n                    \"name\": \"Martenity\"\n                },\n                \"patient\": {\n                    \"id\": \"MR8ZumXywjgC6gYW9bB7NM0ivX4lN9RD\",\n                    \"name\": \"Christina John\"\n                },\n                \"doctor\": {\n                    \"id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\",\n                    \"name\": \"Dr. John AB\"\n                },\n                \"created_at\": 1715705013044,\n                \"updated_at\": 1715788444674,\n                \"appointed_at\": 1684152000000,\n                \"status\": \"assigned-email_sent\"\n            }\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Doctor - Ongoing Appointment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoicmdmYUFNcVM3dVZGNUYwQjFQeEhJdWdNMnNrdWZucTEiLCJpYXQiOjE3MTU3ODcxMTksImV4cCI6MTcxNTg3MzUxOX0.UFofaxCfRrAB2bMEIRojMDWRqmM_OB4wFC1t3YnBgRo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"ongoing_appointment\",\r\n    \"appointment_id\": \"YQyXUryZpYWj9lxglhRr\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/doctor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"doctor"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"ongoing_appointment\",\r\n    \"appointment_id\": \"YQyXUryZpYWj9lxglhRr\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/doctor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"doctor"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "461"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1cd-k7SEPdI7HNac0cX4H/029pZCXyw\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 May 2024 16:26:02 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"appointment updated\",\n        \"data\": {\n            \"appointment\": {\n                \"id\": \"YQyXUryZpYWj9lxglhRr\",\n                \"description\": \"Headache, just headache\",\n                \"department\": {\n                    \"id\": \"vBLNLvyfnUCZvcFMj3np\",\n                    \"name\": \"Martenity\"\n                },\n                \"patient\": {\n                    \"id\": \"MR8ZumXywjgC6gYW9bB7NM0ivX4lN9RD\",\n                    \"name\": \"Christina John\"\n                },\n                \"doctor\": {\n                    \"id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\",\n                    \"name\": \"Dr. John AB\"\n                },\n                \"created_at\": 1715705013044,\n                \"updated_at\": 1715790361859,\n                \"appointed_at\": 1684152000000,\n                \"status\": \"ongoing\"\n            }\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Doctor - Complete Appointment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoicmdmYUFNcVM3dVZGNUYwQjFQeEhJdWdNMnNrdWZucTEiLCJpYXQiOjE3MTU3ODcxMTksImV4cCI6MTcxNTg3MzUxOX0.UFofaxCfRrAB2bMEIRojMDWRqmM_OB4wFC1t3YnBgRo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"complete_appointment\",\r\n    \"appointment_id\": \"YQyXUryZpYWj9lxglhRr\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/doctor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"doctor"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"complete_appointment\",\r\n    \"appointment_id\": \"YQyXUryZpYWj9lxglhRr\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/doctor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"doctor"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "465"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d1-FWSmYhViRFrOE62OVYKSrvj0zh0\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 May 2024 16:29:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"appointment completed\",\n        \"data\": {\n            \"appointment\": {\n                \"id\": \"YQyXUryZpYWj9lxglhRr\",\n                \"description\": \"Headache, just headache\",\n                \"department\": {\n                    \"id\": \"vBLNLvyfnUCZvcFMj3np\",\n                    \"name\": \"Martenity\"\n                },\n                \"patient\": {\n                    \"id\": \"MR8ZumXywjgC6gYW9bB7NM0ivX4lN9RD\",\n                    \"name\": \"Christina John\"\n                },\n                \"doctor\": {\n                    \"id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\",\n                    \"name\": \"Dr. John AB\"\n                },\n                \"created_at\": 1715705013044,\n                \"updated_at\": 1715790540237,\n                \"appointed_at\": 1684152000000,\n                \"status\": \"completed\"\n            }\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Patient - Signup",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"patient_signup\",\r\n    \"name\": \"Patient Zero\",\r\n    \"email\": \"patient0@example.com\",\r\n    \"phone\": \"+25500000000\",\r\n    \"password\": \"patient0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Patient - Signup",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"patient_signup\",\r\n    \"name\": \"Patient Zero\",\r\n    \"email\": \"patient0@example.com\",\r\n    \"phone\": \"+25500000000\",\r\n    \"password\": \"patient0\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "216"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d8-p3W/2TdkkdSMC+5GhJVDS/f8WEM\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 15:44:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"patient account created\",\n        \"data\": {\n            \"patient\": {\n                \"id\": \"MR8ZumXywjgC6gYW9bB7NM0ivX4lN9RD\",\n                \"name\": \"Patient Zero\",\n                \"email\": \"patient0@example.com\",\n                \"created_at\": 1715701469977,\n                \"updated_at\": 0\n            }\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Patient - Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"patient_login\",\r\n    \"email\": \"patient0@example.com\",\r\n    \"password\": \"christinaJohn\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Patient - Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"patient_login\",\r\n    \"email\": \"patient0@example.com\",\r\n    \"password\": \"patient0\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "auth-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiTVI4WnVtWHl3amdDNmdZVzliQjdOTTBpdlg0bE45UkQiLCJpYXQiOjE3MTU3MDE2NTUsImV4cCI6MTcxODI5MzY1NX0.SZ6Hn66An9wiS4_w8DQTeu0Hm1WziCMCiIBPQfD2YG4; Max-Age=2592000; Domain=localhost:5000; Path=/; Expires=Thu, 13 Jun 2024 15:47:35 GMT; HttpOnly; SameSite=Strict"
+						},
+						{
+							"key": "Content-Length",
+							"value": "454"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1c6-cCSm3qe0qNod+/1urx9k/sPtDLE\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 15:47:35 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"patient logged in\",\n        \"data\": {\n            \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiTVI4WnVtWHl3amdDNmdZVzliQjdOTTBpdlg0bE45UkQiLCJpYXQiOjE3MTU3MDE2NTUsImV4cCI6MTcxNTc4ODA1NX0.CbHVtuf9-HUupWbOkcHHIneQBPOwnnc1BCiy4usoJxY\",\n            \"token_type\": \"Bearer\",\n            \"patient\": {\n                \"id\": \"MR8ZumXywjgC6gYW9bB7NM0ivX4lN9RD\",\n                \"name\": \"Patient Zero\",\n                \"email\": \"patient0@example.com\",\n                \"phone\": \"+25500000000\",\n                \"created_at\": 1715701469977,\n                \"updated_at\": 0\n            }\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Patient - Forgot Password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"patient_password_forgot\",\r\n    \"email\": \"patient0@example.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Patient - Forgot Password",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"patient_password_forgot\",\r\n    \"email\": \"patient0@example.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "108"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"6c-FqN6UD2fTn8GJuq0JMWPzmQ9iqc\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 15:54:28 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"password recover email sent\",\n        \"data\": {\n            \"password_recover_email_sent\": true\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Patient - Password Recover",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"patient_password_recover\",\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiTVI4WnVtWHl3amdDNmdZVzliQjdOTTBpdlg0bE45UkQiLCJpYXQiOjE3MTU3MDIwNjgsImV4cCI6MTcxNTcwMjM2OH0.2OW_C1CarhDjKB31GeC3Q2YGnGsS8Af-KDVz6Oi8VgE\",\r\n    \"new_password\": \"christina\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Patient - Password Recover",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"patient_password_recover\",\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiTVI4WnVtWHl3amdDNmdZVzliQjdOTTBpdlg0bE45UkQiLCJpYXQiOjE3MTU3MDIwNjgsImV4cCI6MTcxNTcwMjM2OH0.2OW_C1CarhDjKB31GeC3Q2YGnGsS8Af-KDVz6Oi8VgE\",\r\n    \"new_password\": \"christina\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "53"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"35-uEr4KdrCFJmzlnIn2A3e9mt9qOE\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 15:56:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"password changed\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Patient  - Change Password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiTVI4WnVtWHl3amdDNmdZVzliQjdOTTBpdlg0bE45UkQiLCJpYXQiOjE3MTU3MDE2NTUsImV4cCI6MTcxNTc4ODA1NX0.CbHVtuf9-HUupWbOkcHHIneQBPOwnnc1BCiy4usoJxY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"patient_password_change\",\r\n    \"old_password\": \"christina\",\r\n    \"new_password\": \"christinaJohn\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Patient  - Change Password",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"patient_password_change\",\r\n    \"old_password\": \"christina\",\r\n    \"new_password\": \"christinaJohn\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "53"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"35-uEr4KdrCFJmzlnIn2A3e9mt9qOE\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 16:06:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"password changed\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Patient - Account Edit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiTVI4WnVtWHl3amdDNmdZVzliQjdOTTBpdlg0bE45UkQiLCJpYXQiOjE3MTU3MDE2NTUsImV4cCI6MTcxNTc4ODA1NX0.CbHVtuf9-HUupWbOkcHHIneQBPOwnnc1BCiy4usoJxY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"patient_account_edit\",\r\n    \"name\": \"Christina John\",\r\n    \"phone\": \"+255555555555\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Patient - Account Edit",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"patient_account_edit\",\r\n    \"name\": \"Christina John\",\r\n    \"phone\": \"+255555555555\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "246"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"f6-iU9Txig2H/EY6z+HkNeQrCFKahg\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 15:52:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"account updated\",\n        \"data\": {\n            \"patient\": {\n                \"id\": \"MR8ZumXywjgC6gYW9bB7NM0ivX4lN9RD\",\n                \"name\": \"Christina John\",\n                \"email\": \"patient0@example.com\",\n                \"phone\": \"+255555555555\",\n                \"created_at\": 1715701469977,\n                \"updated_at\": 1715701946200\n            }\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Patient - Create Appointment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiTVI4WnVtWHl3amdDNmdZVzliQjdOTTBpdlg0bE45UkQiLCJpYXQiOjE3MTU3ODg4MjAsImV4cCI6MTcxNTg3NTIyMH0.zw6YrcCD0hXFe8XvQp4urcS36umAHbEznu5Q9zSwJww",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"create_appointment\",\r\n    \"department_id\": \"vBLNLvyfnUCZvcFMj3np\",\r\n    \"description\": \"Headache 3x, just headache\",\r\n    \"appointed_at\": 1987152000000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/patient",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"patient"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Patient - Create Appointment",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"create_appointment\",\r\n    \"department_id\": \"vBLNLvyfnUCZvcFMj3np\",\r\n    \"description\": \"Headache, just headache\",\r\n    \"appointed_at\": 1684152000000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/patient",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"patient"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "391"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"187-9PQSgAzlL7vML0nJHK7ph/WhyJw\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 May 2024 16:44:04 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"appointment created\",\n        \"data\": {\n            \"appointment\": {\n                \"id\": \"nFo9PvIvubcImvmQJBoO\",\n                \"description\": \"Headache, just headache\",\n                \"department\": {\n                    \"id\": \"vBLNLvyfnUCZvcFMj3np\",\n                    \"name\": \"Martenity\"\n                },\n                \"patient\": {\n                    \"id\": \"MR8ZumXywjgC6gYW9bB7NM0ivX4lN9RD\",\n                    \"name\": \"Christina John\"\n                },\n                \"doctor\": null,\n                \"created_at\": 1715705044378,\n                \"updated_at\": 0,\n                \"appointed_at\": 1684152000000,\n                \"status\": \"pending\"\n            }\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Patient - Get Appointments",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiTVI4WnVtWHl3amdDNmdZVzliQjdOTTBpdlg0bE45UkQiLCJpYXQiOjE3MTU3ODg4MjAsImV4cCI6MTcxNTg3NTIyMH0.zw6YrcCD0hXFe8XvQp4urcS36umAHbEznu5Q9zSwJww",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"appointments_data\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/patient",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"patient"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "example 1",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"appointments_data\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/patient",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"patient"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "740"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2e4-WdCr0u7rk5WyE0YwwEJNLqROaUQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 May 2024 15:23:28 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"returned appointments data with 2 items\",\n        \"data\": {\n            \"appointments\": [\n                {\n                    \"id\": \"YQyXUryZpYWj9lxglhRr\",\n                    \"description\": \"Headache, just headache\",\n                    \"department\": {\n                        \"id\": \"vBLNLvyfnUCZvcFMj3np\",\n                        \"name\": \"Martenity\"\n                    },\n                    \"patient\": {\n                        \"id\": \"MR8ZumXywjgC6gYW9bB7NM0ivX4lN9RD\",\n                        \"name\": \"Christina John\"\n                    },\n                    \"doctor\": {\n                        \"id\": null\n                    },\n                    \"created_at\": 1715705013044,\n                    \"updated_at\": 0,\n                    \"appointed_at\": 1684152000000,\n                    \"status\": \"pending\"\n                },\n                {\n                    \"id\": \"nFo9PvIvubcImvmQJBoO\",\n                    \"description\": \"Headache, just headache\",\n                    \"department\": {\n                        \"id\": \"vBLNLvyfnUCZvcFMj3np\",\n                        \"name\": \"Martenity\"\n                    },\n                    \"patient\": {\n                        \"id\": \"MR8ZumXywjgC6gYW9bB7NM0ivX4lN9RD\",\n                        \"name\": \"Christina John\"\n                    },\n                    \"doctor\": {\n                        \"id\": null\n                    },\n                    \"created_at\": 1715705044378,\n                    \"updated_at\": 0,\n                    \"appointed_at\": 1684152000000,\n                    \"status\": \"pending\"\n                }\n            ]\n        }\n    }\n}"
+				},
+				{
+					"name": "example 2",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"appointments_data\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/patient",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"patient"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "817"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"331-fkduPQB9PaoY6QiHhVInn8ABg4A\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 May 2024 16:31:44 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"returned appointments data with 2 items\",\n        \"data\": {\n            \"appointments\": [\n                {\n                    \"id\": \"YQyXUryZpYWj9lxglhRr\",\n                    \"description\": \"Headache, just headache\",\n                    \"department\": {\n                        \"id\": \"vBLNLvyfnUCZvcFMj3np\",\n                        \"name\": \"Martenity\"\n                    },\n                    \"patient\": {\n                        \"id\": \"MR8ZumXywjgC6gYW9bB7NM0ivX4lN9RD\",\n                        \"name\": \"Christina John\"\n                    },\n                    \"doctor\": {\n                        \"id\": \"rgfaAMqS7uVF5F0B1PxHIugM2skufnq1\",\n                        \"name\": \"Dr. John AB\"\n                    },\n                    \"created_at\": 1715705013044,\n                    \"updated_at\": 1715790540237,\n                    \"appointed_at\": 1684152000000,\n                    \"status\": \"completed\"\n                },\n                {\n                    \"id\": \"nFo9PvIvubcImvmQJBoO\",\n                    \"description\": \"Headache, just headache\",\n                    \"department\": {\n                        \"id\": \"vBLNLvyfnUCZvcFMj3np\",\n                        \"name\": \"Martenity\"\n                    },\n                    \"patient\": {\n                        \"id\": \"MR8ZumXywjgC6gYW9bB7NM0ivX4lN9RD\",\n                        \"name\": \"Christina John\"\n                    },\n                    \"doctor\": {\n                        \"id\": null\n                    },\n                    \"created_at\": 1715705044378,\n                    \"updated_at\": 1715789497082,\n                    \"appointed_at\": 1716189000000,\n                    \"status\": \"pending\"\n                }\n            ]\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Patient - Reschedule Appointment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiTVI4WnVtWHl3amdDNmdZVzliQjdOTTBpdlg0bE45UkQiLCJpYXQiOjE3MTU3ODg4MjAsImV4cCI6MTcxNTg3NTIyMH0.zw6YrcCD0hXFe8XvQp4urcS36umAHbEznu5Q9zSwJww",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"reschedule_appointment\",\r\n    \"appointment_id\": \"nFo9PvIvubcImvmQJBoO\",\r\n    \"appointed_at\": 1716189000000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/patient",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"patient"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Patient - Reschedule Appointment",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"reschedule_appointment\",\r\n    \"appointment_id\": \"nFo9PvIvubcImvmQJBoO\",\r\n    \"appointed_at\": 1716189000000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/patient",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"patient"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "407"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"197-p5Nz0Syp9JIW9btSrVENubCLdYY\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 May 2024 16:11:37 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"appointment rescheduled\",\n        \"data\": {\n            \"appointment\": {\n                \"id\": \"nFo9PvIvubcImvmQJBoO\",\n                \"description\": \"Headache, just headache\",\n                \"department\": {\n                    \"id\": \"vBLNLvyfnUCZvcFMj3np\",\n                    \"name\": \"Martenity\"\n                },\n                \"patient\": {\n                    \"id\": \"MR8ZumXywjgC6gYW9bB7NM0ivX4lN9RD\",\n                    \"name\": \"Christina John\"\n                },\n                \"doctor\": null,\n                \"created_at\": 1715705044378,\n                \"updated_at\": 1715789497082,\n                \"appointed_at\": 1716189000000,\n                \"status\": \"pending\"\n            }\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Patient - Cancel Appointment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiTVI4WnVtWHl3amdDNmdZVzliQjdOTTBpdlg0bE45UkQiLCJpYXQiOjE3MTU3ODg4MjAsImV4cCI6MTcxNTg3NTIyMH0.zw6YrcCD0hXFe8XvQp4urcS36umAHbEznu5Q9zSwJww",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"cancel_appointment\",\r\n    \"appointment_id\": \"ncg5CTV53vUA2cRF4bmK\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/patient",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"patient"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"cancel_appointment\",\r\n    \"appointment_id\": \"ncg5CTV53vUA2cRF4bmK\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/patient",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"patient"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "417"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1a1-O9jQ8sgAFRFOqLYHLVaJIiA4+RQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 May 2024 16:46:51 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"appointment cancelled\",\n        \"data\": {\n            \"appointment\": {\n                \"id\": \"ncg5CTV53vUA2cRF4bmK\",\n                \"description\": \"Headache 3x, just headache\",\n                \"department\": {\n                    \"id\": \"vBLNLvyfnUCZvcFMj3np\",\n                    \"name\": \"Martenity\"\n                },\n                \"patient\": {\n                    \"id\": \"MR8ZumXywjgC6gYW9bB7NM0ivX4lN9RD\",\n                    \"name\": \"Christina John\"\n                },\n                \"doctor\": {\n                    \"id\": null\n                },\n                \"created_at\": 1715791590374,\n                \"updated_at\": 1715791611153,\n                \"appointed_at\": 1987152000000,\n                \"status\": \"cancelled\"\n            }\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "User Logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"logout\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "User Logout",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"logout\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "auth-token=; Max-Age=0; Domain=localhost:5000; Path=/; Expires=Mon, 13 May 2024 14:40:41 GMT; HttpOnly"
+						},
+						{
+							"key": "Content-Length",
+							"value": "52"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"34-8bYzckq5F0KwtfT4ZJD90YQUr/o\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 13 May 2024 14:40:41 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": {\n        \"code\": 200,\n        \"message\": \"user logged out\"\n    }\n}"
+				}
+			]
+		}
+	]
+}
