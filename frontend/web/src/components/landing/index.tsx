@@ -72,10 +72,10 @@ const LadingPage = () => {
           variant='contained'
           className='link-btn'
           onClick={() => {
-            navigate('/signin');
+            navigate('/admin/sign-in');
           }}
         >
-          Sign In
+          Admin Sign In
         </Button>
       </div>
     </div>

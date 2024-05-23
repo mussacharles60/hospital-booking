@@ -17,10 +17,10 @@ export const useAuthProvider = () => {
   };
 };
 
-const useAuth = () => {
-  const { auth } = useContext(AuthContext);
-  useDebugValue(auth, (auth) => (auth?.user ? 'Logged In' : 'Logged Out'));
+const useAuthContext = () => {
+  // const { auth } = useContext(AuthContext);
+  // useDebugValue(auth, (auth) => (auth?.user ? 'Logged In' : 'Logged Out'));
   return useContext(AuthContext);
 };
 
-export default useAuth;
+export default useAuthContext;
