@@ -11,6 +11,7 @@ const adminRouter = require('./apis/admin');
 const authRouter = require('./apis/auth');
 const userRouter = require('./apis/user');
 const errorHandler = require('./middleware/errorHandler');
+const corsOptions = require('./config/corsOptions');
 
 const app = express();
 const port = process.env.SERVER_PORT;
@@ -29,7 +30,8 @@ app.all('*', (req, res, next) => {
 });
 
 // for cross origin requests
-app.use(cors('*'));
+// app.use(cors('*'));
+app.use(cors(corsOptions));
 
 app.use('/api', rootRouter);
 app.use('/api/auth', authRouter);
