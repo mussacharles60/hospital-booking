@@ -11,7 +11,8 @@ import axiosGeneral from 'axios';
 import moment from 'moment';
 import useAuth from '../contexts/auth';
 
-const host = 'http://localhost:5000';
+// const host = 'http://localhost:5000';
+const host = 'http://192.168.35.160:5000';
 
 export const defaultHeaders = {
   'Content-Type': 'application/json',

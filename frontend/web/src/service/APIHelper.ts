@@ -76,6 +76,7 @@ class APIs {
                 })
               )
               .then((resp: AxiosResponse<APIResponse<AuthResponseData>>) => {
+                Console.debug('[APIs]: auth.userLogin: then: ', resp);
                 if (!resp) {
                   reject({
                     code: 500,
@@ -91,6 +92,39 @@ class APIs {
                     ? resp.data.success?.data
                     : undefined;
                   if (data) {
+                    // save temporary cookie for development purpose
+                    const refresh_token = resp.headers[
+                      'x-auth-token'
+                    ] as string;
+                    let cookieString =
+                      encodeURIComponent('auth-token') +
+                      '=' +
+                      encodeURIComponent(refresh_token);
+
+                    // Add path
+                    cookieString += '; path=/';
+
+                    // Add domain
+                    const domain = 'localhost';
+                    cookieString += '; domain=' + domain;
+
+                    // Add expiration date if provided
+                    const expireDate = new Date();
+                    expireDate.setDate(expireDate.getDate() + 30);
+                    cookieString += '; expires=' + expireDate.toUTCString();
+
+                    // Add attributes for cross-origin sharing and secure connection
+                    // cookieString += '; SameSite=None;';
+                    cookieString += ';';
+
+                    Console.debug(
+                      '[APIs]: auth.userLogin: then: cookieStr: ',
+                      cookieString
+                    );
+
+                    // Save cookie
+                    document.cookie = cookieString;
+
                     resolve(data);
                   } else {
                     reject({
@@ -294,6 +328,28 @@ class APIs {
                 } else {
                   const success = resp.data.success || undefined;
                   if (success) {
+                    // remove development auth cookie
+                    let cookieString =
+                      encodeURIComponent('auth-token') + '=' + '';
+
+                    // Add path
+                    cookieString += '; path=/';
+
+                    // Add domain
+                    const domain = 'localhost';
+                    cookieString += '; domain=' + domain;
+
+                    // Add expiration date if provided
+                    const expireDate = 'Thu, 01 Jan 1970 00:00:00 UTC';
+                    cookieString += '; expires=' + expireDate;
+
+                    // Add attributes for cross-origin sharing and secure connection
+                    // cookieString += '; SameSite=None;';
+                    cookieString += ';';
+
+                    // Save cookie
+                    document.cookie = cookieString;
+
                     resolve();
                   } else {
                     reject({
