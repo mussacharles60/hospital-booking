@@ -159,6 +159,9 @@ const AuthHelperInternal = {
       maxAge: REFRESH_TOKEN_MAX_AGE,
     });
 
+    // set custom header to the response
+    res.setHeader('x-auth-token', refresh_token);
+
     // return success response
     const resp = {
       success: {
