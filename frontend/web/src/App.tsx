@@ -15,7 +15,9 @@ const App = () => {
           <Route path='/' element={<LadingPage />} />
           <Route path='/admin/sign-in' element={<AdminSignInPage />} />
           {/* <Route path='/admin/forgot-password' element={<AdminSignInPage />} /> */}
-          <Route path='/home' element={<MainPage />} />
+          {['/home', '/account'].map((path, i) => (
+            <Route key={i} path={path} element={<MainPage />} />
+          ))}
         </Routes>
       </BrowserRouter>
     </AuthContext.Provider>

@@ -49,6 +49,7 @@ export type AuthResponseData = {
 export type AuthUser = {
   access_token?: string | null;
   user: Admin | Doctor | Patient | null;
+  user_type?: 'admin' | 'doctor' | 'patient';
 };
 
 export type AuthContextType = {

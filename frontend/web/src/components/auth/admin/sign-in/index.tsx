@@ -86,6 +86,7 @@ const AdminSignInPage = () => {
           authContext.setAuth({
             access_token: data.access_token,
             user: data.admin,
+            user_type: 'admin',
           });
           // redirect to home page / dashboard
           navigate('/home');

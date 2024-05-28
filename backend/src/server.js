@@ -12,6 +12,7 @@ const authRouter = require('./apis/auth');
 const userRouter = require('./apis/user');
 const errorHandler = require('./middleware/errorHandler');
 const corsOptions = require('./config/corsOptions');
+const credentials = require('./middleware/credentials');
 
 const app = express();
 const port = process.env.SERVER_PORT;
@@ -28,6 +29,10 @@ app.all('*', (req, res, next) => {
   console.log(`New Request: ${date}\t Method: ${method}\t Path: ${path}`);
   next();
 });
+
+// handle options credentials check - before CORS!
+// and fetch cookies credentials requirement
+app.use(credentials);
 
 // for cross origin requests
 // app.use(cors('*'));

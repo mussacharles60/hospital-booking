@@ -52,4 +52,10 @@ code {
   padding: 0;
   overflow: hidden;
   
+  @extend .variables
+}
+
+.variables {
+  --primary-color: crimson;
+  --secondary-color: #961831;
 }
