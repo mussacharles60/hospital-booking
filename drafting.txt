@@ -1,0 +1,44 @@
+1. Admin: 
+   - login
+   - add new doctor
+   - add new patient, appointment
+   - add update appointment sessions
+   - 
+ waiting:
+   - chat/messaging & email
+   - add profile photo
+   - 
+
+2. Doctor:
+   - login
+   - view active appointments
+   - update appointments status
+   - 
+  waiting:
+   - profile interface
+   - notifications
+   - upcoming appointments
+   - 
+
+3. Department Head (Doctor):
+   - login
+   - assign appointments
+   - 
+  waiting:
+   - profile interface
+   - notifications
+   - 
+
+4. Patient:
+   - login
+   - make new appointment
+   - 
+  waiting:
+   - 2FA auth
+   - view appointment served by doctor
+   - 
+
+
+
+
+
